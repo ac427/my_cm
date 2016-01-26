@@ -1,2 +1,7 @@
 ---
-# vars file for base
+base_packages:
+  - vim
+  - openssh-server 
+  - openssh-clients
+latest_packages:
+  - bash

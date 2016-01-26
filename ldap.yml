@@ -3,5 +3,12 @@
   hosts:
     - admin
   roles:
-    - ldap
+    - role: openldap_server
+      openldap_server_domain_name: home.com
+      openldap_server_rootpw: ananta
+      openldap_server_enable_ssl: true
+      openldap_server_country: US
+      openldap_server_state: Boston
+      openldap_server_location: MA
+      openldap_server_organization: Home
 

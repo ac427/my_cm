@@ -1,0 +1,9 @@
+- name: install  /etc/openldap/slapd.d/cn=config/olcDatabase={2}bdb.ldif
+  tags: sudo
+  template: src=etc/openldap/slapd.d/cn=config/olcDatabase={2}bdb.ldif.j2 dest=/etc/openldap/slapd.d/cn=config/olcDatabase={2}bdb.ldif owner=root group=root mode=0440 
+
+- name: install  /etc/openldap/slapd.d/cn=config/olcDatabase={1}monitor.ldif
+  tags: sudo
+  template: src=etc/openldap/slapd.d/cn=config/olcDatabase={1}monitor.ldif.j2 dest=/etc/openldap/slapd.d/cn=config/olcDatabase={1}monitor.ldif owner=root group=root mode=0440
+
+- service: name=slapd state=started enabled=yes
