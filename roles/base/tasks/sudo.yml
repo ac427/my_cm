@@ -1,0 +1,4 @@
+- name: install  /etc/sudoers.d/cephadmins
+  tags: sudo
+  template: src=etc/sudoers.d/cephadmins.j2 dest=/etc/sudoers.d/cephadmins owner=root group=root mode=0440 validate='visudo -cf %s'
+

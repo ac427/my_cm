@@ -1,0 +1,7 @@
+---
+- name: base role
+  hosts:
+    - compute
+  roles:
+    - base
+

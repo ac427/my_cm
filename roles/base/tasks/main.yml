@@ -1,0 +1,9 @@
+# tasks file for base
+---
+- include: user.yml
+#- include: ssh_keys.yml tags=ssh_keys
+#- include: packages.yml
+- include: sudo.yml
+- include: ssh.yml
+#- meta: flush_handlers
+

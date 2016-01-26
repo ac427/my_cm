@@ -1,0 +1,26 @@
+---
+# define your host and guest on the command line with --extra-vars "target=hostname"
+# NOT THOROUGHTLY TESTED!  USE WITH CAUTION
+# create a host_vars/<hostname> file FIRST!
+- name: create system in cobbler
+  hosts: admin
+  vars_prompt:
+    - name: "profile"
+      prompt: "cobbler profile"
+      default: "centos6-x86_64"
+  tasks:
+    - command: cobbler system add
+               --name={{ target }}
+               --profile={{ profile }}
+               --hostname={{ target }}
+               --interface=auto
+               --mac="{{ hostvars[target].interfaces.auto.mac }}"
+               --dns-name="{{ hostvars[target].interfaces.auto.dns_name }}"
+               --ip-address="{{ hostvars[target].interfaces.auto.ip }}"
+               creates=/var/lib/cobbler/config/systems.d/{{ target }}.json
+    - command: cobbler system edit
+               --name={{ target }}
+               --interface={{ item.key }}
+               --mac={{ item.value.mac }}
+      with_dict: hostvars[target]['interfaces'] 
+    - command: cobbler sync
