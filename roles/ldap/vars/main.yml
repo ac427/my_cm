@@ -1,0 +1,7 @@
+---
+ldap_packages:
+  - openldap-servers
+  - openldap 
+  - openldap-clients
+latest_packages:
+  - openssh-server

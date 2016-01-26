@@ -1,0 +1,7 @@
+---
+- name: ldap server role
+  hosts:
+    - admin
+  roles:
+    - ldap
+
