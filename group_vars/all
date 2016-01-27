@@ -1,5 +1,5 @@
-cephadmins:
-  - anantac
+ldapadmins:
+  - achak
 openldap_BASEDN: dc=home,dc=com
 openldap_server_rootpw: passw0rd
 openldap_server: master.home
