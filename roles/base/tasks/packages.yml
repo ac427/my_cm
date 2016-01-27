@@ -1,4 +1,7 @@
 ---
+- name: upgrade all packages
+  yum: name=* state=latest
+
 - name: install RPM packages
   tags: packages
   yum: name={{ item }} state=present
