@@ -4,12 +4,12 @@ dn: olcDatabase={2}bdb
 objectClass: olcDatabaseConfig
 objectClass: olcBdbConfig
 olcDatabase: {2}bdb
-olcSuffix: openldap_BASEDN
+olcSuffix: {{openldap_BASEDN}}
 olcAddContentAcl: FALSE
 olcLastMod: TRUE
 olcMaxDerefDepth: 15
 olcReadOnly: FALSE
-olcRootDN: cn=Manager,openldap_BASEDN
+olcRootDN: cn=Manager,{{openldap_BASEDN}}
 olcRootPW: {{ root_password.stdout }}
 olcSyncUseSubentry: FALSE
 olcMonitoring: TRUE
@@ -45,5 +45,5 @@ createTimestamp: 20160126164349Z
 entryCSN: 20160126164349.148331Z#000000#000#000000
 modifiersName: cn=config
 modifyTimestamp: 20160126164349Z
-olcAccess: {0}to attrs=userPassword by self write by dn.base="cn=Manager,dc=acme,dc=com" write by anonymous auth by * none
-olcAccess: {1}to * by dn.base="cn=Manager,dc=acme,dc=com" write by self write by * read
+olcAccess: {0}to attrs=userPassword by self write by dn.base="cn=Manager,{{openldap_BASEDN}}" write by anonymous auth by * none
+olcAccess: {1}to * by dn.base="cn=Manager,{{openldap_BASEDN}}" write by self write by * read

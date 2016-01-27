@@ -1,2 +1,10 @@
 ---
-# vars file for ldap_client
+ldap_client_packages:
+  - openldap 
+  - openldap-clients 
+  - nss-pam-ldapd 
+  - pam_ldap 
+  - nscd 
+  - autofs 
+  - rpcbind 
+  - nfs-utils

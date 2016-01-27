@@ -1,2 +1,6 @@
+# tasks file for base
 ---
-# tasks file for ldap_client
+- include: ldap_client_packages.yml
+- include: ldap_client_config.yml 
+#- meta: flush_handlers
+
