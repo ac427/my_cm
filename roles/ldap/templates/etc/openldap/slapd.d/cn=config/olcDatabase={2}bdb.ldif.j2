@@ -4,13 +4,13 @@ dn: olcDatabase={2}bdb
 objectClass: olcDatabaseConfig
 objectClass: olcBdbConfig
 olcDatabase: {2}bdb
-olcSuffix: dc=home,dc=com
+olcSuffix: openldap_BASEDN
 olcAddContentAcl: FALSE
 olcLastMod: TRUE
 olcMaxDerefDepth: 15
 olcReadOnly: FALSE
-olcRootDN: cn=Manager,dc=home,dc=com
-olcRootPW: {SSHA}9afrfpPnZVis9HJrhVbCx3tqT9En5did
+olcRootDN: cn=Manager,openldap_BASEDN
+olcRootPW: {{ root_password.stdout }}
 olcSyncUseSubentry: FALSE
 olcMonitoring: TRUE
 olcDbDirectory: /var/lib/ldap
