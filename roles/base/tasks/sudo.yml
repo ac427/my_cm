@@ -1,4 +1,4 @@
-- name: install  /etc/sudoers.d/cephadmins
+- name: git ldapadmin sudo 
   tags: sudo
-  template: src=etc/sudoers.d/cephadmins.j2 dest=/etc/sudoers.d/cephadmins owner=root group=root mode=0440 validate='visudo -cf %s'
+  template: src=etc/sudoers.d/ldapadmins.j2 dest=/etc/sudoers.d/ldapadmins owner=root group=root mode=0440 validate='visudo -cf %s'
 

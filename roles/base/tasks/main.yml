@@ -1,8 +1,8 @@
 # tasks file for base
 ---
 #users can be commented after adding ldap auth
-- include: user.yml
-#- include: ssh_keys.yml tags=ssh_keys
+#- include: user.yml
+- include: ssh_keys.yml tags=ssh_keys
 - include: packages.yml
 - include: sudo.yml
 - include: ssh.yml
