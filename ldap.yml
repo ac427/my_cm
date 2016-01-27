@@ -3,6 +3,8 @@
   hosts:
     - admin
   roles:
+    - role: base
     - role: ldap
       openldap_BASEDN: dc=home,dc=com
       openldap_server_rootpw: passw0rd
+    - role: ldap_client

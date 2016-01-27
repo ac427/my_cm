@@ -1,3 +1,7 @@
+[all]
+compute
+admin
+
 [compute]
 compute1
 compute2

@@ -1,6 +1,8 @@
 ---
 base_packages:
   - vim
+  - wget
+  - bind-utils
   - openssh-server 
   - openssh-clients
 latest_packages:
