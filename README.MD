@@ -11,3 +11,6 @@ My virtualbox setup
  - role ldap will configure openldap server ( no encryption for now)
  - role openldap_client will configure all nodes as openldap clients
  - role ceph will install ceph server ( WIP)
+
+# Playbook definition
+ - playbooks/add_node will add a new node to cobbler 
