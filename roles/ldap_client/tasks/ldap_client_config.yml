@@ -1,3 +1,7 @@
+- name: install  nsswitch config
+  tags: ldap_client
+  template: src=etc/nsswitch.conf.j2 dest=/etc/nsswitch.conf owner=root group=root mode=0400  backup=yes
+
 - name: install  nslcd config
   tags: ldap_client
   template: src=etc/nslcd.conf.j2 dest=/etc/nslcd.conf owner=root group=root mode=0400  backup=yes
