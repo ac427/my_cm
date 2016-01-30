@@ -1,0 +1,4 @@
+ganglia_agent: true
+ganglia_port: 8649
+ganglia_group: "Compute"
+ganglia_server: master.home
