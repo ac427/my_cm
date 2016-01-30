@@ -1,5 +1,5 @@
 ---
-# create a host_vars/<hostname> file FIRST!
+# create a host_vars/<hostname> file FIRST! and add it to ansible hosts file
 # usage  $ ansible-playbook -i hosts -u root  --extra-vars "target=compute2" playbooks/add_node 
 - name: create system in cobbler
   hosts: admin
@@ -19,7 +19,6 @@
                creates=/var/lib/cobbler/config/systems.d/{{ target }}.json
     - command: cobbler system edit
                --name={{ target }}
-               --interface={{ item.key }}
-               --mac={{ item.value.mac }}
-      with_dict: hostvars[target]['interfaces'] 
+               --profile={{ profile }}
+#      with_dict: hostvars[target]['interfaces'] 
     - command: cobbler sync

@@ -9,3 +9,9 @@ compute3
 
 [admin]
 admin
+
+[ceph]
+ceph-admin
+
+[Infrastructure:children]
+compute

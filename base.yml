@@ -4,4 +4,4 @@
     - all
   roles:
     - base
-
+    - { role: ganglia-client, when: '"Infrastructure" in group_names' }

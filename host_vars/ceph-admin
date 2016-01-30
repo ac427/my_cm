@@ -1,0 +1,9 @@
+interfaces:
+  auto:
+    ip: 192.168.1.254
+    mac: 08:00:27:54:5F:EC
+    name: auto
+    onboot: 'yes'
+    protocol: dhcp
+    dns_name: ceph-admin.home
+

@@ -1,0 +1,6 @@
+---
+
+- name: install gmond
+  tags: gmond
+  yum: name=ganglia-gmond state=present
+
