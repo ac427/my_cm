@@ -1,0 +1,5 @@
+---
+- include: nmon_CentOS.yml
+  when: ansible_distribution == 'CentOS'
+  tags: nmon
+

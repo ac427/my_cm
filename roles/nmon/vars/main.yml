@@ -1,0 +1,5 @@
+---
+nmon_centos_packages:
+  nmon
+nmon_log: "/var/log/nmon"
+nmon_install: "/usr/share/nmon"
