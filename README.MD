@@ -10,7 +10,6 @@ My virtualbox setup
  - role base will install sudo users and copy ssh_known_hosts of all hosts and will also run yum update and install some basic packages
  - role ldap will configure openldap server ( no encryption for now)
  - role openldap_client will configure all nodes as openldap clients
- - role ceph will install ceph server ( WIP)
-
+ - role nmon installs nmon monitoring
 # Playbook definition
  - playbooks/add_node will add a new node to cobbler 
