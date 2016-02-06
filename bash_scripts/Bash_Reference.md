@@ -34,8 +34,6 @@ taskset -cp 0,4 9030
 
 # Screen command
 
-# Screen command
-
  Below command will start screen session with name one
 ```
  screen -s one.
