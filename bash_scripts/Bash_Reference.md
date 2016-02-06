@@ -57,5 +57,22 @@ Below will Reattach a session and if necessary detach it first.
 screen -dr
 ```
 
+# realpath & readlink. Prints absolute path & Print value of a symbolic link or canonical file name
+
+```
+realpath .
+readlink -e .
+
+```
+
+#basename. Print NAME with any leading directory components removed.
+
+```
+[root@master ~]# basename /etc/dsh/group/compute/compute 
+compute
+[root@master ~]# 
+
+```
+ 
 [taskset1]: http://veithen.github.io/2013/11/18/iowait-linux.html
 [taskset2]: http://xmodulo.com/run-program-process-specific-cpu-cores-linux.html
