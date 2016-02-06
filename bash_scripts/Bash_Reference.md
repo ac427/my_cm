@@ -14,8 +14,19 @@ taskset -cp 0,4 9030
 [taskset1]
 
 
-
-
+# top command
+ 
+- top -u uid . To display only process of uid
+- top -b -n 1. To display top in batch mode for 1 time 
+- Press 'shift+O' to Sort. (Uppercase Letter 'O') . example press ‘a‘ letter to sort process with PID (Process ID).
+- Press '1' to display all cpu information
+- Press 'c' to display absolute path of the command
+- Press 'z' to hightlight running process
+- Press 'd' to set screen refresh intervel
+- Press 'k' to kill a process
+- Press 'h' for help
+- Press 'r' to renice a process
+- Press 'shift+W' to save top info
 
 
 
