@@ -57,7 +57,7 @@ Below will Reattach a session and if necessary detach it first.
 screen -dr
 ```
 
-# realpath & readlink. Prints absolute path & Print value of a symbolic link or canonical file name
+# realpath & readlink. Print value of a symbolic link or canonical file name
 
 ```
 realpath .
