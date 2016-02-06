@@ -1,4 +1,4 @@
-# How to pin a process to a cpu on multicore cpu
+# How to pin a process to a cpu on multicore processor
 
 Examples:
 taskset <COREMASK> <EXECUTABLE>
