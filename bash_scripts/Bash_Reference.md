@@ -1,5 +1,5 @@
 # Reference links
-[one]
+[ss64]
 
 # How to pin a process to a cpu on multicore processor
 
@@ -76,6 +76,6 @@ compute
 [root@master ~]# 
 
 ```
-[one]: http://ss64.com/bash/ 
+[ss64]: http://ss64.com/bash/ 
 [taskset1]: http://veithen.github.io/2013/11/18/iowait-linux.html
 [taskset2]: http://xmodulo.com/run-program-process-specific-cpu-cores-linux.html
