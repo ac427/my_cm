@@ -36,7 +36,7 @@ taskset -cp 0,4 9030
 
  Below command will start screen session with name one
 ```
- screen -s one.
+ screen -s one
 ```
 
 Below command is used to detach screen one
