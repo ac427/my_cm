@@ -1,2 +1,4 @@
 ---
-# tasks file for ganglia-server
+- name: copy gmetad
+  template: src=etc/ganglia/gmetad.conf.j2 dest=/etc/ganglia/gmetad.conf  owner=root group=root mode=0554
+  tags: gmetad

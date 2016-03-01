@@ -1,0 +1,6 @@
+---
+- name: gmeatad role
+  hosts:
+    - admin
+  roles:
+    - role: ganglia-server

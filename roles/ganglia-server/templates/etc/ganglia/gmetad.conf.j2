@@ -1,0 +1,5 @@
+{% for data_source in data_sources  %}
+data_source  "{{data_source  }}" {{data_sources[data_source]['host']}}
+{% endfor %}
+
+setuid_username ganglia

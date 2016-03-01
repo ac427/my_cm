@@ -1,2 +1,6 @@
 ---
-# vars file for ganglia-server
+data_sources:
+  Compute: 
+    host: compute1.home 
+  Infrastrucutre:
+    host: admin.home
