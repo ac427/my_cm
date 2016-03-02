@@ -6,10 +6,5 @@ My virtualbox setup
  3. Admin node runs squid proxy and cobbler
  4. DNS and DHCP is managed via cobbler on Admin node
 
-# Ansible Role definition
- - role base will install sudo users and copy ssh_known_hosts of all hosts and will also run yum update and install some basic packages
- - role ldap will configure openldap server ( no encryption for now)
- - role openldap_client will configure all nodes as openldap clients
- - role nmon installs nmon monitoring
 # Playbook definition
  - playbooks/add_node will add a new node to cobbler 
