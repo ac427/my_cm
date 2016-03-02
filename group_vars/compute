@@ -1,1 +1,3 @@
 ganglia_data_source: compute1.home
+ganglia_group: Compute
+

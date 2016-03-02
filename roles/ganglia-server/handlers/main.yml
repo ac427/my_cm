@@ -1,2 +1,3 @@
 ---
-# handlers file for ganglia-server
+- include: CentOS.yml
+  when: ansible_distribution == 'CentOS'

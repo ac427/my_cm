@@ -6,5 +6,5 @@ openldap_server: master.home
 ganglia_data_sources:
   Compute: 
     host: compute1.home 
-  Infrastrucutre:
+  Controller:
     host: admin.home

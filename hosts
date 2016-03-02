@@ -10,7 +10,7 @@ compute3
 [admin]
 admin
 
-[Infrastructure:children]
+[Infrastructure]
 admin
 
 [ceph]

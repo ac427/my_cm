@@ -1,4 +1,9 @@
+# tasks file for ganglia gmond
 ---
-- name: copy gmetad
-  template: src=etc/ganglia/gmetad.conf.j2 dest=/etc/ganglia/gmetad.conf  owner=root group=root mode=0554
+- name: Add OS specific variables
+  include_vars: "{{ ansible_os_family }}.yml"
+  tags: gmetad
+
+- include: ganglia_CentOS.yml
+  when: ansible_distribution == 'CentOS'
   tags: gmetad
