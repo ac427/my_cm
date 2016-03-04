@@ -76,6 +76,12 @@ compute
 [root@master ~]# 
 
 ```
+
+#epoch converter 
+
+```
+date -d @1453991950
+```
 [ss64]: http://ss64.com/bash/ 
 [taskset1]: http://veithen.github.io/2013/11/18/iowait-linux.html
 [taskset2]: http://xmodulo.com/run-program-process-specific-cpu-cores-linux.html
