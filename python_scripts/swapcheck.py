@@ -1,6 +1,6 @@
 #!/bin/env python
 # Author Ananta Chakravartula
-# script which check the stopped pids and reports 
+# script which check the stopped pids and reports the swap space used by those pid. This can be used  to clean up on a shared machine where users stopped programs are taking up swap space  
 import glob
 import re
 import os
