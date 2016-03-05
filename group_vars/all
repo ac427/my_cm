@@ -8,3 +8,12 @@ ganglia_data_sources:
     host: compute1.home 
   Controller:
     host: admin.home
+
+mount:
+  apps:
+    src: "master.home:/share/apps"
+    name: /share/apps
+    fstype: nfs
+    opts: nosuid,vers=3,actimeo=10,lookupcache=positive
+    dump: 0
+    passno: 0

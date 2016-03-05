@@ -1,0 +1,4 @@
+# tasks file for base
+---
+- include: mount.yml
+
