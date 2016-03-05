@@ -20,7 +20,11 @@
 #  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
 #  MA 02110-1301, USA.
 #  
-#  
+# 
+"""
+NFS health check. Created  to use as elim for LSF. Can be modifed according to the need 
+"""
+ 
 import subprocess
 import time
 
