@@ -1,9 +1,0 @@
-# tasks file for ganglia gmond
----
-- name: Add OS specific variables
-  include_vars: "{{ ansible_os_family }}.yml"
-  tags: gmetad
-
-- include: ganglia_CentOS.yml
-  when: ansible_distribution == 'CentOS'
-  tags: gmetad
