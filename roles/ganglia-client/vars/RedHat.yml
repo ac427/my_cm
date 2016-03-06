@@ -1,5 +1,0 @@
----
-ganglia_centos_packages:
-  - epel-release
-  - ganglia-gmond
-
