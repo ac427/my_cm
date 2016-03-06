@@ -1,8 +1,0 @@
-# Create local cephadmin and developer groups
-- group: name=cephadmins state=present
-- group: name=developers state=present
-## Local User creation
-- user: name=anantac comment="Ananta Chakravartula" uid=5000 groups=cephadmins,developers append=yes
-- file: path=/home/anantac/.ssh state=directory mode=0700 owner=anantac group=anantac
-- copy: src=srv/myfiles/authorized_keys2 dest=/home/anantac/.ssh/authorized_keys owner=anantac group=anantac mode=0600
-
