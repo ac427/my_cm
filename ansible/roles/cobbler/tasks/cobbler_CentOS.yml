@@ -1,0 +1,19 @@
+---
+- name: upgrade all packages
+  yum: name=* state=latest
+
+- name: install CentOS packages for cobbler server
+  tags: cobbler
+  yum: name={{ item }} state=present
+  with_items: cobbler_centos_packages
+  when: cobbler_centos_packages is defined
+
+- name: template /etc/ganglia/gmond.conf
+  tags: cobbler
+  template: src=etc/ganglia/gmond_{{ ansible_distribution }}.conf.j2 dest=/etc/ganglia/gmond.conf owner=root group=root mode=0444
+  notify: restart gmond
+
+- name: enable gmond
+  tags: cobbler
+  service: name=gmond state=started enabled=yes
+
