@@ -17,7 +17,7 @@
   notify: restart cobblerd
 
 - name: template /etc/xinet.d/tftp
-  template: src=etc/xinet.d/tftp_{{ ansible_distribution }}.conf.j2 dest=/etc/xinet.d/tftp.teplate owner=root group=root mode=0444
+  template: src=etc/xinet.d/tftp.template_{{ ansible_distribution }}.conf.j2 dest=/etc/xinet.d/tftp.teplate owner=root group=root mode=0444
 
 - name: turn on xinetd service
   service: name=xinted enabled=yes
