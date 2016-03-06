@@ -2,4 +2,8 @@
 cobbler_centos_packages:
   - epel-release
   - cobbler
+  - xinetd
+  - dhcp
+  - bind
+  - dhcp-common
 

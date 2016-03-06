@@ -8,12 +8,19 @@
   with_items: cobbler_centos_packages
   when: cobbler_centos_packages is defined
 
-- name: template /etc/ganglia/gmond.conf
-  tags: cobbler
-  template: src=etc/ganglia/gmond_{{ ansible_distribution }}.conf.j2 dest=/etc/ganglia/gmond.conf owner=root group=root mode=0444
-  notify: restart gmond
+- name: turn on cobblerd service 
+  service: name=cobblerd enabled=yes
+  notify: restart cobblerd
 
-- name: enable gmond
-  tags: cobbler
-  service: name=gmond state=started enabled=yes
+- name: turn on dhcpd service
+  service: name=dhcpd enabled=yes
+  notify: restart dhcpd
+
+- name: turn on named service
+  service: name=named enabled=yes
+  notify: restart named
+
+- name: template /etc/cobbler/settings.
+  template: src=etc/cobbler/service_{{ ansible_distribution }}.conf.j2 dest=/etc/cobbler/serttings owner=root group=root mode=0444
+  notify: restart gmond
 

@@ -1,0 +1,3 @@
+---
+- name: restart cobblerd
+  service: name=cobblerd state=restarted
