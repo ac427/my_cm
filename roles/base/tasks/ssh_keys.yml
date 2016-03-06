@@ -1,3 +1,0 @@
-- name: copy /etc/ssh/ssh_known_hosts
-  tags: ssh_keys
-  copy: src=etc/ssh/ssh_known_hosts dest=/etc/ssh/ssh_known_hosts owner=root group=root mode=0444
