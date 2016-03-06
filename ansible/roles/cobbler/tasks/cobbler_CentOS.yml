@@ -9,7 +9,7 @@
   when: cobbler_centos_packages is defined
 
 - name: template /etc/cobbler/settings
-  template: src=etc/cobbler/service_{{ ansible_distribution }}.conf.j2 dest=/etc/cobbler/settings owner=root group=root mode=0444
+  template: src=etc/cobbler/settings_{{ ansible_distribution }}.conf.j2 dest=/etc/cobbler/settings owner=root group=root mode=0444
   notify: restart cobblerd
 
 - name: template /etc/cobbler/dhcp.template
