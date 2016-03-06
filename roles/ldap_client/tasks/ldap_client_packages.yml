@@ -1,6 +1,0 @@
----
-
-- name: install RPM packages
-  tags: packages
-  yum: name={{ item }} state=present
-  with_items: ldap_client_packages
