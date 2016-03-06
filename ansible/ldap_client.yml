@@ -1,0 +1,6 @@
+---
+- name: ldap client role
+  hosts:
+    - all
+  roles:
+    - role: ldap_client

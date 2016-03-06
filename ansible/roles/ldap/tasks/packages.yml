@@ -1,0 +1,11 @@
+---
+- name: install RPM packages
+  tags: packages
+  yum: name={{ item }} state=present
+  with_items: ldap_packages
+
+- name: install latest RPM packages
+  tags: packages
+  yum: name={{ item }} state=latest
+  with_items: latest_packages
+

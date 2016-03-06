@@ -1,0 +1,18 @@
+- name: create mount point directories
+  tags: fstab
+  file: path={{ mount[item].name }} state=directory
+  with_items: fstab
+  when: fstab is defined
+
+- name: mount /share/apps
+  tags: fstab
+#  mount: src=/share/apps name=/share/apps fstype=nfs state=present
+  mount: src={{ mount[item].src }}
+         name={{ mount[item].name }}
+         fstype={{ mount[item].fstype }}
+         opts={{ mount[item].opts }}
+         dump={{ mount[item].dump }}
+         passno={{ mount[item].passno }}
+         state=mounted
+  with_items: fstab
+  when: fstab is defined

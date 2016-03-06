@@ -1,0 +1,2 @@
+ganglia_data_source: admin.home
+ganglia_group: Infrastructure

@@ -1,0 +1,22 @@
+---
+- name: install CentOS packages for ganglia nodes
+  tags: gmetad
+  yum: name={{ item }} state=present
+  with_items: ganglia_centos_packages
+  when: ganglia_centos_packages is defined
+
+- name: install latest CentOS packages for ganglia nodes
+  tags: gmetad
+  yum: name={{ item }} state=latest
+  with_items: ganglia_centos_latest_packages
+  when: ganglia_centos_latest_packages is defined
+
+- name: template /etc/ganglia/gmetad.conf
+  tags: gmetad
+  template: src=etc/ganglia/gmetad_{{ ansible_distribution }}.conf.j2 dest=/etc/ganglia/gmetad.conf owner=root group=root mode=0444
+  notify: restart gmetad
+
+- name: enable gmetad
+  tags: gmetad
+  service: name=gmetad state=started enabled=yes
+

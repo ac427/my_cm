@@ -1,0 +1,7 @@
+---
+- name: base role
+  hosts:
+    - all
+  roles:
+    - base
+    - ganglia-client

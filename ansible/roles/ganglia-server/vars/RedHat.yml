@@ -1,0 +1,6 @@
+---
+ganglia_centos_packages:
+  - epel-release
+  - ganglia-gmetad
+  - ganglia
+  - ganglia-web

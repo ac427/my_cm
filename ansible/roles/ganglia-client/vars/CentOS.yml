@@ -1,0 +1,4 @@
+---
+ganglia_centos_packages:
+  - ganglia-gmond
+

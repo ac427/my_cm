@@ -1,0 +1,8 @@
+---
+- name: compute role
+  hosts:
+    - compute
+  roles:
+    - base
+    - ganglia-client
+    - compute
