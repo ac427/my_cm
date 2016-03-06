@@ -1,0 +1,39 @@
+options {
+          listen-on port 53 { 172.16.1.10; };
+          directory       "/var/named";
+          dump-file       "/var/named/data/cache_dump.db";
+          statistics-file "/var/named/data/named_stats.txt";
+          memstatistics-file "/var/named/data/named_mem_stats.txt";
+          allow-query     { any; };
+          recursion yes;
+	  forwarders { 8.8.8.8; 8.8.4.4; };
+};
+
+logging {
+        channel default_debug {
+                file "data/named.run";
+                severity dynamic;
+        };
+};
+
+#for $zone in $forward_zones
+zone "${zone}." IN{
+    type master;
+    file "$zone";
+    ## Add these two lines to allow DNS querying
+    allow-update { any; };
+    notify no;
+};
+
+#end for
+
+#for $zone, $arpa in $reverse_zones
+zone "${arpa}." {
+    type master;
+    file "$zone";
+    ## Add these two lines to allow DNS querying
+    allow-update { any; };
+    notify no;
+};
+
+#end for
