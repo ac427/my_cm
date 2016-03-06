@@ -1,7 +1,0 @@
-#!/bin/bash
-#count=minutes_left/300
-hour=$(date +%H)
-min=$(date +%M)
-count=$((288-((10#$hour*60*60)+(10#$min*60))/300))
-#echo $count
-/usr/bin/nmon -ft -s 300 -c $count -m /var/log/nmon/
