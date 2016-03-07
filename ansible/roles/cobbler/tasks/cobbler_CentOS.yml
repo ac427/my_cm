@@ -17,7 +17,7 @@
   notify: restart cobblerd
 
 - name: template /etc/cobbler/named.template
-  template: src=etc/cobbler/named.template_{{ ansible_distribution }}.conf.j2 dest=/etc/cobbler/named.teplate owner=root group=root mode=0444
+  template: src=etc/cobbler/named.template_{{ ansible_distribution }}.conf.j2 dest=/etc/cobbler/named.template owner=root group=root mode=0444
   notify: restart cobblerd
 
 
