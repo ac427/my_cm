@@ -33,17 +33,15 @@
 
 - name: turn on dhcpd service
   service: name=dhcpd enabled=yes
-  notify: restart dhcpd
+  notify: restart cobblerd
 
 - name: turn on named service
   service: name=named enabled=yes
-  notify: restart named
+  notify: restart cobblerd
 
 - name: turn on httpd service
   service: name=httpd enabled=yes
   notify: restart httpd
-
-
 
 
 
