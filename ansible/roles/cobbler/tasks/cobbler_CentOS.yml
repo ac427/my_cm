@@ -16,6 +16,11 @@
   template: src=etc/cobbler/dhcp.template_{{ ansible_distribution }}.conf.j2 dest=/etc/cobbler/dhcp.teplate owner=root group=root mode=0444
   notify: restart cobblerd
 
+- name: template /etc/cobbler/named.template
+  template: src=etc/cobbler/named.template_{{ ansible_distribution }}.conf.j2 dest=/etc/cobbler/named.teplate owner=root group=root mode=0444
+  notify: restart cobblerd
+
+
 - name: template /etc/cobbler/zone.template
   template: src=etc/cobbler/zone.template_{{ ansible_distribution }}.conf.j2 dest=/etc/cobbler/zone.template owner=root group=root mode=0444
   notify: restart cobblerd
