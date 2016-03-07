@@ -20,7 +20,7 @@
   template: src=etc/xinetd.d/tftp.template_{{ ansible_distribution }}.conf.j2 dest=/etc/xinetd.d/tftp.teplate owner=root group=root mode=0444
 
 - name: turn on xinetd service
-  service: name=xinted enabled=yes
+  service: name=xinetd enabled=yes
 
 - name: turn on cobblerd service
   service: name=cobblerd enabled=yes
