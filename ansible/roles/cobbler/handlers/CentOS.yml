@@ -2,6 +2,9 @@
 - name: restart cobblerd
   service: name=cobblerd state=restarted
 
+- name: restart httpd
+  service: name=httpd state=restarted
+
 - name: cobbler sync
   command: cobbler sync
   notify: restart cobblerd

@@ -34,6 +34,10 @@
   service: name=named enabled=yes
   notify: restart named
 
+- name: turn on httpd service
+  service: name=httpd enabled=yes
+  notify: restart httpd
+
 
 
 
