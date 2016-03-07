@@ -6,5 +6,7 @@ base_packages:
   - openssh-server 
   - openssh-clients
   - epel-release
+  - git 
+  - screen
 latest_packages:
   - bash
