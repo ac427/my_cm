@@ -35,6 +35,7 @@
 
 - name: turn on cobblerd service
   service: name=cobblerd enabled=yes
+  notify: restart cobblerd
 
 - name: turn on dhcpd service
   service: name=dhcpd enabled=yes
