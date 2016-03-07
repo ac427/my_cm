@@ -5,6 +5,9 @@
 - name: restart xinetd
   service: name=xinetd state=restarted
 
+- name: restart cobblerd
+  service: name=cobblerd state=restarted
+
 - name: cobbler sync
   command: cobbler sync
   notify: restart cobblerd
