@@ -8,5 +8,6 @@ base_packages:
   - epel-release
   - git 
   - screen
+  - libselinux-python
 latest_packages:
   - bash
