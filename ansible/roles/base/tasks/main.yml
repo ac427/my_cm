@@ -4,6 +4,8 @@
 #- include: user.yml
 - include: ssh_keys.yml tags=ssh_keys
 - include: packages.yml
+- include: selinux.yml
+- include: restart_wait.yml
 - include: sudo.yml
 - include: ssh.yml
 #- meta: flush_handlers
