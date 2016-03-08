@@ -12,6 +12,7 @@ admin
 
 [Infrastructure]
 admin
+localhost 
 
 [ceph]
 ceph-admin
