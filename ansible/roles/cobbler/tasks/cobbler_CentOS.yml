@@ -3,7 +3,6 @@
   yum: name=* state=latest
 
 - name: install CentOS packages for cobbler server
-  tags: cobbler
   yum: name={{ item }} state=present
   with_items: cobbler_centos_packages
   when: cobbler_centos_packages is defined
@@ -31,9 +30,6 @@
     - xinetd
     - httpd
     - cobblerd
-    - dhcpd
-    - named 
-  ignore_errors: yes
 
 - name: cobbler sync
   command: cobbler sync 

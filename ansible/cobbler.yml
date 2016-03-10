@@ -3,5 +3,4 @@
   hosts:
     - localhost
   roles:
-    - role: base
     - role: cobbler
