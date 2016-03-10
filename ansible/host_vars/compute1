@@ -1,9 +1,8 @@
 interfaces:
   auto:
-    ip: 192.168.1.100
-    mac: 08:00:27:AE:E4:54
+    ip: 172.16.1.100
+    mac: 08:00:27:C2:82:F3
     name: auto
     onboot: 'yes'
     protocol: dhcp
     dns_name: compute1.home
-
