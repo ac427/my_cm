@@ -23,13 +23,15 @@
 - name: template /etc/xinetd.d/tftp
   template: src=etc/xinetd.d/tftp.template_{{ ansible_distribution }}.conf.j2 dest=/etc/xinetd.d/tftp.template owner=root group=root mode=0444
 
-##dhcpd will fail and it can be ignored. cobbler sync will restart dhcpd
 - name: Enable services
   service: name={{item}} state=started enabled=yes
   with_items:
     - xinetd
     - httpd
     - cobblerd
+
+## cobbbler sync is failing as cobblerd is taking time to start service  ; adding pause for that reason
+- pause: seconds=5
 
 - name: cobbler sync
   command: cobbler sync 
