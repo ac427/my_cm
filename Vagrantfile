@@ -1,11 +1,13 @@
 Vagrant.configure(2) do |config|
   config.vm.box = "centos/7"
-  config.vm.network "private_network", ip: "172.16.1.10", virtualbox__intnet: "home_network" 
+  config.vm.network "private_network", ip: "172.16.1.10", netmask: "255.255.0.0", virtualbox__intnet: "home_network" 
   config.vm.hostname = "admin.home"
   config.vm.provider "virtualbox" do |v|
    	v.memory = 1024
      	v.cpus = 2
-        v.gui = true
+# If you want virtulabox gui
+#        v.gui = true
+        v.name = "ansible_admin"
   end
   config.vm.provision "shell", inline: <<-SHELL
          yum -y update
@@ -37,6 +39,6 @@ EOF"
 	chmod 0600 /home/vagrant/.ssh/root	
 	chown -R vagrant:vagrant /home/vagrant/.ssh/ 
 	ssh-keyscan localhost >> /home/vagrant/.ssh/known_hosts
-#	init 6
+	init 6
   SHELL
 end
