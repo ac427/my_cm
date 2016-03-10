@@ -10,20 +10,16 @@
 
 - name: template /etc/cobbler/settings
   template: src=etc/cobbler/settings_{{ ansible_distribution }}.conf.j2 dest=/etc/cobbler/settings owner=root group=root mode=0444
-  notify: cobbler sync
 
 - name: template /etc/cobbler/dhcp.template
   template: src=etc/cobbler/dhcp.template_{{ ansible_distribution }}.conf.j2 dest=/etc/cobbler/dhcp.teplate owner=root group=root mode=0444
-  notify: cobbler sync
 
 - name: template /etc/cobbler/named.template
   template: src=etc/cobbler/named.template_{{ ansible_distribution }}.conf.j2 dest=/etc/cobbler/named.template owner=root group=root mode=0444
-  notify: cobbler sync
 
 
 - name: template /etc/cobbler/zone.template
   template: src=etc/cobbler/zone.template_{{ ansible_distribution }}.conf.j2 dest=/etc/cobbler/zone.template owner=root group=root mode=0444
-  notify: cobbler sync
 
 
 - name: template /etc/xinetd.d/tftp
@@ -39,13 +35,13 @@
 
 - name: turn on dhcpd service
   service: name=dhcpd enabled=yes
-  notify: cobbler sync
 
 - name: turn on named service
   service: name=named enabled=yes
-  notify: cobbler sync
 
 - name: turn on httpd service
   service: name=httpd enabled=yes
   notify: restart httpd
 
+- name : cobbler sync
+  command : cobbler sync

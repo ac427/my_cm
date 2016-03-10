@@ -8,5 +8,3 @@
 - name: restart xinetd
   service: name=xinetd state=restarted
 
-- name: cobbler sync
-  command: cobbler sync
