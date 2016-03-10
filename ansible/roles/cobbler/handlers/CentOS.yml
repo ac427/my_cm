@@ -3,6 +3,8 @@
 - name: restart httpd
   service: name=httpd state=restarted
 
+- name: restart xinetd
+  service: name=xinetd state=restarted
+
 - name: cobbler sync
   command: cobbler sync
-  notify: restart cobblerd
