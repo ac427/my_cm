@@ -32,10 +32,17 @@
   with_items:
     - xinetd
     - httpd
+    - cobblerd
+
+- name: cobbler sync
+  command: cobbler sync 
+
+- name: Enable services
+  service: name={{item}} state=started enabled=yes
+  with_items:
     - dhcpd
     - named
-    - cobblerd
-  notify: 
-    - restart httpd
-    - restart xinetd
-    - cobbler sync
+
+
+
+ 
