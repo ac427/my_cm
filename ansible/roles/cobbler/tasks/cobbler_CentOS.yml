@@ -12,36 +12,26 @@
   template: src=etc/cobbler/settings_{{ ansible_distribution }}.conf.j2 dest=/etc/cobbler/settings owner=root group=root mode=0444
 
 - name: template /etc/cobbler/dhcp.template
-  template: src=etc/cobbler/dhcp.template_{{ ansible_distribution }}.conf.j2 dest=/etc/cobbler/dhcp.teplate owner=root group=root mode=0444
+  template: src=etc/cobbler/dhcp.template_{{ ansible_distribution }}.conf.j2 dest=/etc/cobbler/dhcp.template owner=root group=root mode=0444
 
 - name: template /etc/cobbler/named.template
   template: src=etc/cobbler/named.template_{{ ansible_distribution }}.conf.j2 dest=/etc/cobbler/named.template owner=root group=root mode=0444
-
 
 - name: template /etc/cobbler/zone.template
   template: src=etc/cobbler/zone.template_{{ ansible_distribution }}.conf.j2 dest=/etc/cobbler/zone.template owner=root group=root mode=0444
 
 
 - name: template /etc/xinetd.d/tftp
-  template: src=etc/xinetd.d/tftp.template_{{ ansible_distribution }}.conf.j2 dest=/etc/xinetd.d/tftp.teplate owner=root group=root mode=0444
+  template: src=etc/xinetd.d/tftp.template_{{ ansible_distribution }}.conf.j2 dest=/etc/xinetd.d/tftp.template owner=root group=root mode=0444
 
-- name: turn on xinetd service
-  service: name=xinetd enabled=yes
-  notify: restart xinetd
-
-- name: turn on cobblerd service
-  service: name=cobblerd enabled=yes
-  notify: restart cobblerd
-
-- name: turn on dhcpd service
-  service: name=dhcpd enabled=yes
-
-- name: turn on named service
-  service: name=named enabled=yes
-
-- name: turn on httpd service
-  service: name=httpd enabled=yes
-  notify: restart httpd
-
-- name : cobbler sync
-  command : cobbler sync
+- name: Enable services
+  service: name={{item}} state=started enabled=yes
+  with_items:
+    - xinetd
+    - httpd
+    - dhcpd
+    - named
+    - cobblerd
+  notify: 
+    - restart httpd
+    - cobbler sync
