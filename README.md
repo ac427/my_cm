@@ -1,4 +1,4 @@
-### You can use the Vagrantfile to build the ansible admin node and run play book compute.yml to install and configure dhcp and dns
+### You can use the Vagrantfile in the repo to build the ansible admin node and run play book compute.yml to install and configure dhcp and dns
 Steps:
 
 ```
