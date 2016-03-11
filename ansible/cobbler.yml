@@ -1,6 +1,6 @@
 ---
 - name: install cobbler and configure dhcp and dns
   hosts:
-    - localhost
+    - cobbler
   roles:
     - role: cobbler

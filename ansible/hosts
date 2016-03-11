@@ -18,4 +18,4 @@ localhost
 ceph-admin
 
 [cobbler]
-localhost
+172.16.1.11
