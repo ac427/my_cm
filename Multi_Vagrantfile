@@ -21,13 +21,6 @@ nameserver 172.16.1.10
 nameserver 8.8.8.8
 nameserver 8.8.4.4
 EOF"
-		bash -c "cat << EOF > /home/vagrant/cobbler.sh
-wget http://mirror.cs.vt.edu/pub/CentOS/7/isos/x86_64/CentOS-7-x86_64-Minimal-1511.iso -P /tmp
-sudo mkdir -p /mnt/centos7
-sudo mount -o loop /tmp/CentOS-7-x86_64-Minimal-1511.iso /mnt/centos7/
-sudo cobbler import --path=/mnt/centos7/ --name=centos7-x86_64 --available-as=http://admin.home/centos7
-EOF"
-		 chmod +x /home/vagrant/cobbler.sh
 		 git clone https://github.com/ac427/my_cm.git
 		 sed -i.bak_$(date +%s) "s/^NM_CONTROLLED/#NM_CONTROLLED/g" /etc/sysconfig/network-scripts/ifcfg-eth0
 		 sed -i.bak_$(date +%s) "s/^NM_CONTROLLED/#NM_CONTROLLED/g" /etc/sysconfig/network-scripts/ifcfg-eth1
@@ -62,6 +55,13 @@ EOF"
     		v.name = "cobbler"
    	end
 	 cobbler.vm.provision "shell", inline: <<-SHELL
+                bash -c "cat << EOF > /home/vagrant/cobbler.sh
+wget http://mirror.cs.vt.edu/pub/CentOS/7/isos/x86_64/CentOS-7-x86_64-Minimal-1511.iso -P /tmp
+sudo mkdir -p /mnt/centos7
+sudo mount -o loop /tmp/CentOS-7-x86_64-Minimal-1511.iso /mnt/centos7/
+sudo cobbler import --path=/mnt/centos7/ --name=centos7-x86_64 --available-as=http://admin.home/centos7
+EOF"
+		 chmod +x /home/vagrant/cobbler.sh
 	 SHELL
   end
 	config.vm.define "compute1" do |compute1|
