@@ -61,7 +61,9 @@ sudo mkdir -p /mnt/centos7
 sudo mount -o loop /tmp/CentOS-7-x86_64-Minimal-1511.iso /mnt/centos7/
 sudo cobbler import --path=/mnt/centos7/ --name=centos7-x86_64 --available-as=http://admin.home/centos7
 EOF"
-		 chmod +x /home/vagrant/cobbler.sh
+		###some how copy the admin hosts root id_rsa.pub to here ie; admin:/root/.ssh/id_rsa.pu /root/.ssh/authorzied_keys
+		## looks like sync folder doesn't share files across vms  
+		chmod +x /home/vagrant/cobbler.sh
 	 SHELL
   end
 	config.vm.define "compute1" do |compute1|
