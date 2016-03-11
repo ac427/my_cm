@@ -3,4 +3,5 @@
   hosts:
     - cobbler
   roles:
+    - role: base
     - role: cobbler
