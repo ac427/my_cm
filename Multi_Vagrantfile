@@ -64,6 +64,8 @@ EOF"
 		###some how copy the admin hosts root id_rsa.pub to here ie; admin:/root/.ssh/id_rsa.pu /root/.ssh/authorzied_keys
 		## looks like sync folder doesn't share files across vms  
 		chmod +x /home/vagrant/cobbler.sh
+		sed -i.bak "s/SELINUX=enforcing/SELINUX=disabled/g" /etc/selinux/config
+		init 6
 	 SHELL
   end
 	config.vm.define "compute1" do |compute1|
@@ -77,6 +79,8 @@ EOF"
                 v.name = "compute1"
         end
          compute1.vm.provision "shell", inline: <<-SHELL
+	 sed -i.bak "s/SELINUX=enforcing/SELINUX=disabled/g" /etc/selinux/config
+	 init 6
          SHELL
   end
 end
