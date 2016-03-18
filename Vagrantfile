@@ -22,12 +22,8 @@ nameserver 8.8.8.8
 nameserver 8.8.4.4
 EOF"
 		 git clone https://github.com/ac427/my_cm.git
-		 sed -i.bak_$(date +%s) "s/^NM_CONTROLLED/#NM_CONTROLLED/g" /etc/sysconfig/network-scripts/ifcfg-eth0
-		 sed -i.bak_$(date +%s) "s/^NM_CONTROLLED/#NM_CONTROLLED/g" /etc/sysconfig/network-scripts/ifcfg-eth1
 		 sed -i.bak_$(date +%s) "s/^PEERDNS/#PEERDNS/g" /etc/sysconfig/network-scripts/ifcfg-eth0
 		 sed -i.bak_$(date +%s) "s/^PEERDNS/#PEERDNS/g" /etc/sysconfig/network-scripts/ifcfg-eth1
-		 echo "NM_CONTROLLED=no" >> /etc/sysconfig/network-scripts/ifcfg-eth0
-		 echo "NM_CONTROLLED=no" >> /etc/sysconfig/network-scripts/ifcfg-eth1
 		 echo "PEERDNS=no" >> /etc/sysconfig/network-scripts/ifcfg-eth0
 		 echo "PEERDNS=no" >> /etc/sysconfig/network-scripts/ifcfg-eth1
 		###### Copy root keys to vagrant user
