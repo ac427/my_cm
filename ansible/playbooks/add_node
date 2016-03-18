@@ -6,7 +6,7 @@
   vars_prompt:
     - name: "profile"
       prompt: "cobbler profile"
-      default: "centos6-x86_64"
+      default: "centos7-x86_64"
   tasks:
     - command: cobbler system add
                --name={{ target }}
