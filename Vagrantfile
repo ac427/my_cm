@@ -17,7 +17,7 @@ Vagrant.configure("2") do |config|
 		sed -i.bak "s/SELINUX=enforcing/SELINUX=disabled/g" /etc/selinux/config
 		bash -c "cat << EOF > /etc/resolv.conf
 search home
-nameserver 172.16.1.10
+nameserver 172.16.1.11
 nameserver 8.8.8.8
 nameserver 8.8.4.4
 EOF"
@@ -40,6 +40,7 @@ EOF"
 		chmod 0600 /home/vagrant/.ssh/root
 		chown -R vagrant:vagrant /home/vagrant/.ssh/
 		ssh-keyscan localhost >> /home/vagrant/.ssh/known_hosts
+		echo "172.16.1.11 cobbler cobbler.home"  >> /etc/hosts
 		init 6
 	SHELL
   end
@@ -65,6 +66,20 @@ EOF"
 		## looks like sync folder doesn't share files across vms  
 		chmod +x /home/vagrant/cobbler.sh
 		sed -i.bak "s/SELINUX=enforcing/SELINUX=disabled/g" /etc/selinux/config
+bash -c "cat << EOF > /etc/resolv.conf
+search home
+nameserver 172.16.1.11
+nameserver 8.8.8.8
+nameserver 8.8.4.4
+EOF"
+                 sed -i.bak_$(date +%s) "s/^NM_CONTROLLED/#NM_CONTROLLED/g" /etc/sysconfig/network-scripts/ifcfg-eth0
+                 sed -i.bak_$(date +%s) "s/^NM_CONTROLLED/#NM_CONTROLLED/g" /etc/sysconfig/network-scripts/ifcfg-eth1
+                 sed -i.bak_$(date +%s) "s/^PEERDNS/#PEERDNS/g" /etc/sysconfig/network-scripts/ifcfg-eth0
+                 sed -i.bak_$(date +%s) "s/^PEERDNS/#PEERDNS/g" /etc/sysconfig/network-scripts/ifcfg-eth1
+                 echo "NM_CONTROLLED=no" >> /etc/sysconfig/network-scripts/ifcfg-eth0
+                 echo "NM_CONTROLLED=no" >> /etc/sysconfig/network-scripts/ifcfg-eth1
+                 echo "PEERDNS=no" >> /etc/sysconfig/network-scripts/ifcfg-eth0
+                 echo "PEERDNS=no" >> /etc/sysconfig/network-scripts/ifcfg-eth1
 		init 6
 	 SHELL
   end

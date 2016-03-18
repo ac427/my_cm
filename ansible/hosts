@@ -20,4 +20,4 @@ ceph-admin
 [cobbler]
 #uncomment localhost and comment 172* if you want to run ansible and cobbler on same hosts
 #localhost
-172.16.1.11
+cobbler
