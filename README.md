@@ -9,7 +9,7 @@ vagrant up;vagrant ssh
 ```
 [vagrant@admin ~]$ eval $(ssh-agent )
 [vagrant@admin ~]$ ssh-add .ssh/root 
-[vagrant@admin ~]$ git clone https://bitbucket.org/memoverflow/my_cm.git
+[vagrant@admin ~]$ git clone https://github.com/ac427/my_cm.git
 [vagrant@admin ~]$ cd my_cm/ansible/
 [vagrant@admin ansible]$ ansible-playbook -i hosts -u root cobbler.yml 
 ```
