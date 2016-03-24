@@ -2,6 +2,15 @@
 compute
 admin
 
+[puppetmaster]
+admin
+
+[puppetdb]
+puppetdb
+
+[puppetca]
+puppetca
+
 [compute]
 compute1
 compute2
