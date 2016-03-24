@@ -1,7 +1,7 @@
 # -*- mode: ruby -*-
 
 # vi: set ft=ruby :
-
+# run "vagrant plugin install vagrant-vbguest " to have /opt/share mounted
 puppetboxes = [
     {
         :name => "puppetca",
@@ -23,6 +23,8 @@ puppetboxes = [
 ]
 
 Vagrant.configure("2") do |config|
+  config.vm.synced_folder "~/share", "/opt/share"
+  config.vm.synced_folder '.', '~/vagrant', disabled: true
   config.vm.define "admin" do |admin|
  	admin.vm.box = "centos/7"
   admin.vm.hostname = 'admin'
@@ -51,16 +53,19 @@ EOF"
 		echo "PEERDNS=no" >> /etc/sysconfig/network-scripts/ifcfg-eth0
 		echo "PEERDNS=no" >> /etc/sysconfig/network-scripts/ifcfg-eth1
 		###### Copy root keys to vagrant user
-	  yes |  bash -c "ssh-keygen -f ~/.ssh/id_rsa -t rsa  -N '' "
+         	yes |  bash -c "ssh-keygen -f ~/.ssh/id_rsa -t rsa  -N '' "
 		mkdir -p /home/vagrant/.ssh
 		###### Doing to run commands as root via ssh-agent , Kow what you are doing while using this file
 		cat /root/.ssh/id_rsa.pub >> /root/.ssh/authorized_keys
+		cp /root/.ssh/id_rsa  /home/vagrant/.ssh/root
+		rm /opt/share/authorized_keys
+		cp /root/.ssh/id_rsa.pub /opt/share/authorized_keys
 		chmod 0600 /root/.ssh/authorized_keys
-		cp /root/.ssh/id_rsa /home/vagrant/.ssh/root
-		chmod 0600 /home/vagrant/.ssh/root
-		chown -R vagrant:vagrant /home/vagrant/.ssh/
+		chmod 0600 /home/vagrant/.ssh/authorized_keys
+		chmod 0600 /opt/share/authorized_keys
 		ssh-keyscan localhost >> /home/vagrant/.ssh/known_hosts
 		echo "172.16.1.11 cobbler cobbler.home"  >> /etc/hosts
+		chown -R vagrant:vagrant /home/vagrant/
 		init 6
 	SHELL
   end
@@ -82,8 +87,9 @@ sudo mkdir -p /mnt/centos7
 sudo mount -o loop /tmp/CentOS-7-x86_64-Minimal-1511.iso /mnt/centos7/
 sudo cobbler import --path=/mnt/centos7/ --name=centos7-x86_64 --available-as=http://admin.home/centos7
 EOF"
-    ###some how copy the admin hosts root id_rsa.pub to here ie; admin:/root/.ssh/id_rsa.pu /root/.ssh/authorzied_keys
-    ## looks like sync folder doesn't share files across vms  
+    mkdir -p /root/.ssh	
+    cat /opt/share/authorized_keys >> /root/.ssh/authorized_keys
+    chmod 0600 /root/.ssh/authorized_keys
     chmod +x /home/vagrant/cobbler.sh
     sed -i.bak "s/SELINUX=enforcing/SELINUX=disabled/g" /etc/selinux/config
     bash -c "cat << EOF > /etc/resolv.conf
@@ -100,6 +106,7 @@ EOF"
     echo "NM_CONTROLLED=no" >> /etc/sysconfig/network-scripts/ifcfg-eth1
     echo "PEERDNS=no" >> /etc/sysconfig/network-scripts/ifcfg-eth0
     echo "PEERDNS=no" >> /etc/sysconfig/network-scripts/ifcfg-eth1
+    chown -R vagrant:vagrant /home/vagrant/
     init 6
   SHELL
   end
@@ -116,6 +123,9 @@ EOF"
  end
  compute1.vm.provision "shell", inline: <<-SHELL
 	   sed -i.bak "s/SELINUX=enforcing/SELINUX=disabled/g" /etc/selinux/config
+           mkdir -p /root/.ssh
+           cat /opt/share/authorized_keys >>  /root/.ssh/authorized_keys
+           chmod 0600 /root/.ssh/authorized_keys
 	   init 6
  SHELL
  end
@@ -129,6 +139,13 @@ EOF"
         v.cpus = opts[:cpu]
         v.name = opts[:name]
         end
+      config.vm.provision "shell", inline: <<-SHELL
+	   sed -i.bak "s/SELINUX=enforcing/SELINUX=disabled/g" /etc/selinux/config
+           mkdir -p /root/.ssh
+           cat /opt/share/authorized_keys  >>  /root/.ssh/authorized_keys
+           chmod 0600 /root/.ssh/authorized_keys
+           init 6
+ SHELL
       config.vm.network :private_network, type: "dhcp", mac: opts[:mac],virtualbox__intnet: "home_network"
       end
   end
