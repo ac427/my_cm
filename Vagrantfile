@@ -7,13 +7,13 @@ puppetboxes = [
         :name => "puppetca",
         :mem => "512",
         :cpu => "1" ,
-        :mac => "08:00:27:dd:da:b8"
+        :mac => "080027dddab8"
     },
     {
         :name => "puppetdb",
         :mem => "512",
         :cpu => "1" ,
-        :mac => "08:00:27:66:df:f4"
+        :mac => "08002766dff4"
     }
 #   {
 #        :name => "foreman",
@@ -129,7 +129,7 @@ EOF"
         v.cpus = opts[:cpu]
         v.name = opts[:name]
         end
-      config.vm.network :private_network, mac: opts[:mac],virtualbox__intnet: "home_network"
+      config.vm.network :private_network, type: "dhcp", mac: opts[:mac],virtualbox__intnet: "home_network"
       end
   end
 end
