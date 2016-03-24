@@ -26,7 +26,7 @@ Vagrant.configure("2") do |config|
   config.vm.define "admin" do |admin|
  	admin.vm.box = "centos/7"
   admin.vm.hostname = 'admin'
-  admin.vm.network :private_network, ip: "172.16.1.10", netmask: "255.255.0.0", virtualbox__intnet: "home_network" 
+  admin.vm.network :private_network, ip: "172.16.1.10", netmask: "255.255.0.0", mac: "0800276464d9", virtualbox__intnet: "home_network" 
   admin.vm.provider :virtualbox do |v|
 		    v.memory = 1024
     		v.cpus = 2
