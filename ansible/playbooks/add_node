@@ -2,11 +2,11 @@
 # create a host_vars/<hostname> file FIRST! and add it to ansible hosts file
 # usage  $ ansible-playbook -i hosts -u root  --extra-vars "target=compute2" playbooks/add_node 
 - name: create system in cobbler
-  hosts: admin
+  hosts: cobbler
   vars_prompt:
     - name: "profile"
       prompt: "cobbler profile"
-      default: "centos6-x86_64"
+      default: "centos7-x86_64"
   tasks:
     - command: cobbler system add
                --name={{ target }}

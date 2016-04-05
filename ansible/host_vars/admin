@@ -1,0 +1,8 @@
+interfaces:
+  auto:
+    ip: 172.16.1.10
+    mac: 08:00:27:64:64:d9 
+    name: auto
+    onboot: 'yes'
+    protocol: static
+    dns_name: admin.home

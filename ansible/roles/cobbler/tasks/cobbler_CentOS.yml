@@ -1,7 +1,4 @@
 ---
-- name: upgrade all packages
-  yum: name=* state=latest
-
 - name: install CentOS packages for cobbler server
   yum: name={{ item }} state=present
   with_items: cobbler_centos_packages

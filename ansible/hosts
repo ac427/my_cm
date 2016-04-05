@@ -2,6 +2,15 @@
 compute
 admin
 
+[puppetmaster]
+admin
+
+[puppetdb]
+puppetdb
+
+[puppetca]
+puppetca
+
 [compute]
 compute1
 compute2
@@ -18,4 +27,6 @@ localhost
 ceph-admin
 
 [cobbler]
-localhost
+#uncomment localhost and comment 172* if you want to run ansible and cobbler on same hosts
+#localhost
+cobbler
