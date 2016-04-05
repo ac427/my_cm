@@ -22,7 +22,7 @@
 #  
 # 
 """
-Script to find rogue process on compute nodes which bypassed LSF scheduler. LSF doesn't do proper cleanup for interactive jobs, example tmux will be lauched with ppid of 1 and when the job dies the process will be in sleeping state
+Script to find rogue process on compute nodes which bypassed LSF scheduler. LSF doesn't do proper cleanup for interactive jobs, example tmux will be lauched with ppid of 1 and when the job dies the process will be in sleeping state.
 """
 
 
