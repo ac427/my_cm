@@ -60,11 +60,12 @@ for pid in LSFPIDS:
 # find rouge process
 # print pid info ;  ps u -p 4220 | awk 'NR>1'
 print "rogue pids " 
-print "USER PID  %CPU  %MEM  VSZ  RSS  TTY  STAT  START  TIME  COMMAND"
+print "USER\tPID\tPPID\t%CPU\t%MEM\tSTAT\tTT\tTIME\t\tCMD"
 for pid in PIDS:
-	pid_info=['ps u -p '+pid+ '| awk "NR>1"']
+	pid_info=['ps -p '+pid+'  -o user,pid,ppid,pcpu,pmem,stat,tty,time,cmd | awk "NR>1"']
+	#pid_info=[' ps -f -p '+pid+ '| awk "NR>1"']
 	if pid in WHITELIST:
 		pass
 	else:
 		rogue_info=subprocess.Popen(pid_info,stdout=subprocess.PIPE,shell=True)
-		print " ".join(rogue_info.communicate()[0].split())
+		print "\t".join(rogue_info.communicate()[0].split())
