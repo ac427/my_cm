@@ -28,6 +28,7 @@ Vagrant.configure("2") do |config|
   config.vm.define "admin" do |admin|
  	admin.vm.box = "centos/7"
   admin.vm.hostname = 'admin'
+  admin.vm.network "forwarded_port", guest: 22, host: 2000, id: "ssh", auto_correct: true
   admin.vm.network :private_network, ip: "172.16.1.10", netmask: "255.255.0.0", mac: "0800276464d9", virtualbox__intnet: "home_network" 
   admin.vm.provider :virtualbox do |v|
 		    v.memory = 1024
@@ -73,6 +74,7 @@ EOF"
  config.vm.define "cobbler" do |cobbler|
  cobbler.vm.box = "centos/7"
  cobbler.vm.hostname = 'cobbler'
+ cobbler.vm.network "forwarded_port", guest: 22, host: 2001,id: "ssh", auto_correct: true
  cobbler.vm.network :private_network, ip: "172.16.1.11", netmask: "255.255.0.0",  mac: "080027ab5bcf", virtualbox__intnet: "home_network" 
  cobbler.vm.provider :virtualbox do |v|
     		v.memory = 1024
