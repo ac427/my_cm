@@ -1,0 +1,8 @@
+interfaces:
+  auto:
+    ip: 172.16.1.12
+    mac: 08:00:27:c2:82:d3
+    name: auto
+    onboot: 'yes'
+    protocol: dhcp
+    dns_name: jenkins.home

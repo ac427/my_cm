@@ -1,0 +1,9 @@
+---
+jenkins_centos_packages:
+  - java-1.7.0-openjdk
+  - jenkins
+# below packages are for X forward to work on my VM
+  - xorg-x11-xauth
+  - xorg-x11-font-utils
+  - xorg-x11-utils
+  - firefox

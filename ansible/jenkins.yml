@@ -1,0 +1,7 @@
+---
+- name: jenkins role
+  hosts:
+    - jenkins
+  roles:
+    - role: base
+    - role: ansible_jenkins_role 

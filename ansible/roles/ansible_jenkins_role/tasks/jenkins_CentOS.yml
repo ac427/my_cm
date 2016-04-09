@@ -1,0 +1,26 @@
+---
+
+- name: install jenkins repo
+  command: wget -O /etc/yum.repos.d/jenkins.repo http://pkg.jenkins-ci.org/redhat-stable/jenkins.repo
+
+- name: install jenkins key
+  command: rpm --import https://jenkins-ci.org/redhat/jenkins-ci.org.key
+
+- name: install open-jdk and jenkins
+  yum: name={{ item }} state=present
+  with_items: jenkins_centos_packages
+  when: jenkins_centos_packages is defined
+
+- name : add jenkins_admin unix group
+  group: name=jenkins_admin state=present
+
+- name: add jenkins to jenkins_admin group
+  user: name=jenkins  groups=jenkins_admin append=yes
+
+- name: template /var/lib/jenkins/config.xml
+  template: src=var/lib/jenkins/config.xml.j2 dest=/var/lib/jenkins/config.xml owner=jenkins group=jenkins mode=0444
+  notify: restart jenkins
+
+- name: enable jenkins
+  service: name=jenkins state=started enabled=yes
+
