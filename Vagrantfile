@@ -33,8 +33,10 @@ Vagrant.configure("2") do |config|
   admin.vm.provider :virtualbox do |v|
 		    v.memory = 1024
     		v.cpus = 2
-    		v.gui = false
+    		v.gui = true
     		v.name = "admin"
+		v.customize ["modifyvm", :id, "--nicpromisc2", "allow-all"]
+
   end
 	admin.vm.provision "shell", inline: <<-SHELL
 	  yum -y update
@@ -79,8 +81,10 @@ EOF"
  cobbler.vm.provider :virtualbox do |v|
     		v.memory = 1024
     		v.cpus = 1
-    		v.gui = false
+    		v.gui = true
     		v.name = "cobbler"
+                v.customize ["modifyvm", :id, "--nicpromisc2", "allow-all"]
+
  end
  cobbler.vm.provision "shell", inline: <<-SHELL
     bash -c "cat << EOF > /home/vagrant/cobbler.sh
@@ -121,8 +125,10 @@ EOF"
  jenkins.vm.provider :virtualbox do |v|
                 v.memory = 1024
                 v.cpus = 1
-                v.gui = false
+                v.gui = true
                 v.name = "jenkins"
+                v.customize ["modifyvm", :id, "--nicpromisc2", "allow-all"]
+
  end
  jenkins.vm.provision "shell", inline: <<-SHELL
            sed -i.bak "s/SELINUX=enforcing/SELINUX=disabled/g" /etc/selinux/config
@@ -173,3 +179,4 @@ EOF"
       end
   end
 end
+
