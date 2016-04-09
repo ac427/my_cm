@@ -33,7 +33,7 @@ Vagrant.configure("2") do |config|
   admin.vm.provider :virtualbox do |v|
 		    v.memory = 1024
     		v.cpus = 2
-    		v.gui = true
+    		v.gui = false
     		v.name = "admin"
   end
 	admin.vm.provision "shell", inline: <<-SHELL
@@ -79,7 +79,7 @@ EOF"
  cobbler.vm.provider :virtualbox do |v|
     		v.memory = 1024
     		v.cpus = 1
-    		v.gui = true
+    		v.gui = false
     		v.name = "cobbler"
  end
  cobbler.vm.provision "shell", inline: <<-SHELL
@@ -112,6 +112,27 @@ EOF"
     init 6
   SHELL
   end
+ 
+ config.vm.define "jenkins" do |jenkins|
+ jenkins.vm.box = "centos/7"
+ jenkins.vm.hostname = 'jenkins'
+ jenkins.vm.network "forwarded_port", guest: 22, host: 2002, id: "ssh", auto_correct: true
+ jenkins.vm.network :private_network, type: "dhcp", mac: "080027C282D3", virtualbox__intnet: "home_network"
+ jenkins.vm.provider :virtualbox do |v|
+                v.memory = 1024
+                v.cpus = 1
+                v.gui = false
+                v.name = "jenkins"
+ end
+ jenkins.vm.provision "shell", inline: <<-SHELL
+           sed -i.bak "s/SELINUX=enforcing/SELINUX=disabled/g" /etc/selinux/config
+           mkdir -p /root/.ssh
+           cat /opt/share/authorized_keys >>  /root/.ssh/authorized_keys
+           chmod 0600 /root/.ssh/authorized_keys
+           init 6
+ SHELL
+ end
+
 	
  config.vm.define "compute1" do |compute1|
  compute1.vm.box = "centos/7"
@@ -120,7 +141,7 @@ EOF"
  compute1.vm.provider :virtualbox do |v|
                 v.memory = 1024
                 v.cpus = 1
-                v.gui = true
+                v.gui = false
                 v.name = "compute1"
  end
  compute1.vm.provision "shell", inline: <<-SHELL
