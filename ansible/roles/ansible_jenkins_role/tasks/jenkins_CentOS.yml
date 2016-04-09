@@ -21,6 +21,12 @@
   template: src=var/lib/jenkins/config.xml.j2 dest=/var/lib/jenkins/config.xml owner=jenkins group=jenkins mode=0444
   notify: restart jenkins
 
+- name : install jenkins plugin 
+  command : curl -o {{jenkins_home}} {{jenkins_plugin_url}}/{{item}}/{{item}}.hpi
+  with_items: jenkins_plugins
+  when: jenkins_plugins is defined
+ 
+
 - name: enable jenkins
   service: name=jenkins state=started enabled=yes
 
