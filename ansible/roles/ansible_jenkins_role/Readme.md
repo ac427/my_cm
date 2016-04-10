@@ -11,6 +11,8 @@
 - ssh -p 2002 -X vagrant@localhost 
 - launch firefox and open http://localhost:8080
 - Navigate to, Manage Jenkins - Configure Systems -  add SSH remote hosts ( check screenshot) 
+-  Credentials - add root credintials ( check screenshot)
+
  
 #  Project setup 
 
