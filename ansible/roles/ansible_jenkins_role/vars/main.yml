@@ -18,4 +18,6 @@ jenkins_plugins:
   - plain-credentials
   - git 
   - github
+  - workflow-step-api
+  - ssh-agent
   - ssh
