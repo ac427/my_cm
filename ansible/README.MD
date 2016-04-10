@@ -7,4 +7,6 @@ My virtualbox setup
  4. DNS and DHCP is managed via cobbler on Admin node
 
 # Playbook definition
- - playbooks/add_node will add a new node to cobbler 
+ - playbooks/add_node will add a new node to cobbler
+
+# To install jenkins and run playboot via jenkins host 
