@@ -1,6 +1,6 @@
 # Configure Jenkis
 
-- all screenshots are in my_cm/ansible/roles/ansible_jenkins_role/images directory 
+- all screenshots are in my_cm/ansible/roles/ansible_jenkins_role/images directory ( don't run jenkins.yml like in screenshot, it will make your jenkins crash as the playbook tries to restart jenkins service) 
 - configure jenkins host by running jenkins.yml
 - Manually copy the admin host root ssh key(id_rsa) as /var/lib/jenkins/root on jenkins host 
 - Reset password for user jenkins on jenkins host to whatever you want
