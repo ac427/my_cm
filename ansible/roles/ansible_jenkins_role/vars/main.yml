@@ -20,4 +20,7 @@ jenkins_plugins:
   - github
   - workflow-step-api
   - ssh-agent
+  - icon-shim 
+  - structs
+  - workflow-aggregator 
   - ssh
