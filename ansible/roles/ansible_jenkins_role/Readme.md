@@ -20,9 +20,15 @@
 - Source Code Management --> Git--> give github url 
 - check Poll SCM and give how fequently you want to run / or when to run, self explanatory 
 - check Build Environment - > Execute shell script on remote host using ssh	
-- You can run ansible-playbook in Pre build script /Post build script
+- You can run below as pre-build step 
+
 ```
-      $ ansible-playbook -i /home/vagrant/my_cm/ansible/hosts --tags=plugin -u root  /home/vagrant/my_cm/ansible/base.yml
+ssh root@cobbler "cobbler system edit --name=testmachine --netboot-enable=true";ssh root@testmachine "init 6";sleep 15m;
+```
+- You can run below to post build to check playbook on freshly installed OS
+
+```
+      $ ansible-playbook -i /home/vagrant/my_cm/ansible/hosts -u root  /home/vagrant/my_cm/ansible/base.yml
 ```
 - check SSH Agent -> it shoud auto select the account we added before 
 
