@@ -21,6 +21,9 @@
   template: src=var/lib/jenkins/config.xml.j2 dest=/var/lib/jenkins/config.xml owner=jenkins group=jenkins mode=0444
   notify: restart jenkins
 
+- name: create plugins dir if not present
+  file: path=/var/lib/jenkins/plugins state=directory mode=0754 owner=jenkins group=jenkins 
+
 - name : install jenkins plugin 
   get_url: url={{jenkins_plugin_url}}/{{item}}/latest/{{item}}.hpi dest={{jenkins_home}}/plugins  owner=jenkins group=jenkins mode=0644
   tags : plugin
