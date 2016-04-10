@@ -6,3 +6,5 @@ interfaces:
     onboot: 'yes'
     protocol: dhcp
     dns_name: cobbler.home
+ganglia_data_source: admin.home
+ganglia_group: Infra
