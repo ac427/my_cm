@@ -1,11 +1,4 @@
 ---
-jenkins_plugin_url: http://updates.jenkins-ci.org/download/plugins
-
-jenkins_home: /var/lib/jenkins
-
-jenkins_plugin:
-  - ansible
-
 jenkins_centos_packages:
   - java-1.7.0-openjdk
   - jenkins
