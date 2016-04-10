@@ -30,3 +30,4 @@ sudo cobbler import --path=/mnt/centos7/ --name=centos7-x86_64 --available-as=ht
 ansible-playbook -i hosts -u root  --extra-vars "target=compute1 profile=centos7-x86_64" playbooks/add_node
 ```
 
+### To run ansible via jenkis, check Readme of  ansible role ansible_jenkins_role 
