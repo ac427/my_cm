@@ -9,5 +9,9 @@ base_packages:
   - git 
   - screen
   - libselinux-python
+  - xorg-x11-xauth
+  - xorg-x11-font-utils
+  - xorg-x11-utils
+  - firefox
 latest_packages:
   - bash
