@@ -14,5 +14,8 @@ jenkins_plugins:
   - git-client
   - matrix-project
   - ssh-credentials
+  - github-api 
+  - plain-credentials
+  - git 
   - github
   - ssh
