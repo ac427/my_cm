@@ -5,4 +5,14 @@ jenkins_home: "/var/lib/jenkins"
 
 jenkins_plugins:
   - ansible
+  - credentials
+  - mailer
+  - scm-api
+  - promoted-builds
+  - token-macro
+  - parameterized-trigger
+  - git-client
+  - matrix-project
+  - ssh-credentials
   - github
+  - ssh
