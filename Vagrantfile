@@ -135,7 +135,6 @@ EOF"
     mkdir -p /root/.ssh
     cat /opt/share/authorized_keys >>  /root/.ssh/authorized_keys
     chmod 0600 /root/.ssh/authorized_keys
-    chmod +x /home/vagrant/cobbler.sh
     sed -i.bak "s/SELINUX=enforcing/SELINUX=disabled/g" /etc/selinux/config
     bash -c "cat << EOF > /etc/resolv.conf
 search home
