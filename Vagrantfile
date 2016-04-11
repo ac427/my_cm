@@ -160,7 +160,7 @@ EOF"
  config.vm.define "compute1" do |compute1|
  compute1.vm.box = "centos/7"
  compute1.vm.hostname = 'compute1'
- compute1.vm.network :private_network, mac: "080027C282F3", virtualbox__intnet: "home_network"
+ compute1.vm.network :private_network,type: "dhcp", mac: "080027C282F3", virtualbox__intnet: "home_network"
  compute1.vm.provider :virtualbox do |v|
                 v.memory = 1024
                 v.cpus = 1
