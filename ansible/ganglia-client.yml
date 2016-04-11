@@ -1,0 +1,6 @@
+---
+- name: ganglia-client role
+  hosts:
+    - all
+  roles:
+    - ganglia-client

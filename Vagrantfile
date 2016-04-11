@@ -131,11 +131,29 @@ EOF"
 
  end
  jenkins.vm.provision "shell", inline: <<-SHELL
-           sed -i.bak "s/SELINUX=enforcing/SELINUX=disabled/g" /etc/selinux/config
-           mkdir -p /root/.ssh
-           cat /opt/share/authorized_keys >>  /root/.ssh/authorized_keys
-           chmod 0600 /root/.ssh/authorized_keys
-           init 6
+    sed -i.bak "s/SELINUX=enforcing/SELINUX=disabled/g" /etc/selinux/config
+    mkdir -p /root/.ssh
+    cat /opt/share/authorized_keys >>  /root/.ssh/authorized_keys
+    chmod 0600 /root/.ssh/authorized_keys
+    chmod +x /home/vagrant/cobbler.sh
+    sed -i.bak "s/SELINUX=enforcing/SELINUX=disabled/g" /etc/selinux/config
+    bash -c "cat << EOF > /etc/resolv.conf
+search home
+nameserver 172.16.1.11
+nameserver 8.8.8.8
+nameserver 8.8.4.4
+EOF"
+    sed -i.bak_$(date +%s) "s/^NM_CONTROLLED/#NM_CONTROLLED/g" /etc/sysconfig/network-scripts/ifcfg-eth0
+    sed -i.bak_$(date +%s) "s/^NM_CONTROLLED/#NM_CONTROLLED/g" /etc/sysconfig/network-scripts/ifcfg-eth1
+    sed -i.bak_$(date +%s) "s/^PEERDNS/#PEERDNS/g" /etc/sysconfig/network-scripts/ifcfg-eth0
+    sed -i.bak_$(date +%s) "s/^PEERDNS/#PEERDNS/g" /etc/sysconfig/network-scripts/ifcfg-eth1
+    echo "NM_CONTROLLED=no" >> /etc/sysconfig/network-scripts/ifcfg-eth0
+    echo "NM_CONTROLLED=no" >> /etc/sysconfig/network-scripts/ifcfg-eth1
+    echo "PEERDNS=no" >> /etc/sysconfig/network-scripts/ifcfg-eth0
+    echo "PEERDNS=no" >> /etc/sysconfig/network-scripts/ifcfg-eth1
+    chown -R vagrant:vagrant /home/vagrant/
+    init 6
+
  SHELL
  end
 
