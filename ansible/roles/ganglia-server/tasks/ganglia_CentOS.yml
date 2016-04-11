@@ -16,6 +16,9 @@
   template: src=etc/ganglia/gmetad_{{ ansible_distribution }}.conf.j2 dest=/etc/ganglia/gmetad.conf owner=root group=root mode=0444
   notify: restart gmetad
 
+- name: enable httpd 
+  service: name=httpd state=started enabled=yes
+
 - name: enable gmetad
   tags: gmetad
   service: name=gmetad state=started enabled=yes
