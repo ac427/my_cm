@@ -32,4 +32,4 @@ ssh root@cobbler "cobbler system edit --name=testmachine --netboot-enable=true";
 ```
 - check SSH Agent -> it shoud auto select the account we added before 
 
-# There is also ansible plugin for jenkins, but I was unable to find options to run on remote host, you can  use that if both ansible host and jenkins host is the same
+- There is also ansible plugin for jenkins, but I was unable to find options to run on remote host, you can  use that if both ansible host and jenkins host is the same
