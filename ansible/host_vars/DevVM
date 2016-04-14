@@ -1,0 +1,12 @@
+interfaces:
+  auto:
+    ip: 172.16.1.20
+    mac: 08:00:27:64:54:d9 
+    name: auto
+    onboot: 'yes'
+    protocol: dhcp
+    dns_name: DevVM.home
+mem: 512
+cpus: 2 
+size: 10000
+location: /opt/VMs

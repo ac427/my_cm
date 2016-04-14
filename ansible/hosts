@@ -2,6 +2,9 @@
 compute
 admin
 
+[dev]
+DevVM
+
 [jenkins]
 jenkins
 

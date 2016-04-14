@@ -1,0 +1,30 @@
+---
+## run this to create virtual box ; virtual box should be installed on target machine 
+## ansible-playbook -i hosts -u root  --extra-vars "target=DevVM" playbooks/ansible_add_virtualbox 
+- name: createvm
+  hosts: admin
+  tasks:
+    - command: VBoxManage createvm --name {{ target }} --register
+      register: result
+      ignore_errors: True
+
+    - debug:
+        var: result
+
+
+    - command: VBoxManage modifyvm {{ target }} --nic1 intnet
+      when: result.stdout.find('create') != -1
+    - command: VBoxManage modifyvm {{ target }} --macaddress1 "{{ hostvars[target].interfaces.auto.mac| regex_replace(':','') }}"
+      when: result.stdout.find('create') != -1
+    - command: VBoxManage modifyvm {{ target }} --memory "{{ hostvars[target].mem }}" --acpi on --boot1 net --nicpromisc1 allow-all
+      when: result.stdout.find('create') != -1
+    - command: VBoxManage modifyvm {{ target }} --ostype RedHat_64
+      when: result.stdout.find('create') != -1
+    - command: VBoxManage createhd --filename {{ hostvars[target].location }}/{{target}}.vdi --size  {{ hostvars[target].size }}
+      when: result.stdout.find('create') != -1
+    - command: VBoxManage storagectl "{{target}}" --name "IDE Controller" --add ide
+      when: result.stdout.find('create') != -1
+    - command: VBoxManage modifyvm {{ target }} --cpus {{ hostvars[target].cpus }}
+      when: result.stdout.find('create') != -1
+    - command: VBoxManage storageattach {{target}} --storagectl "IDE Controller"  --port 0 --device 0 --type hdd --medium {{ hostvars[target].location }}/{{ target }}.vdi
+      when: result.stdout.find('create') != -1
