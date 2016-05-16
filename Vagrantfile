@@ -2,25 +2,25 @@
 
 # vi: set ft=ruby :
 # run "vagrant plugin install vagrant-vbguest " to have /opt/share mounted
-puppetboxes = [
-    {
-        :name => "puppetca",
-        :mem => "512",
-        :cpu => "1" ,
-        :mac => "080027dddab8"
-    },
-    {
-        :name => "puppetdb",
-        :mem => "512",
-        :cpu => "1" ,
-        :mac => "08002766dff4"
-    }
+#puppetboxes = [
+#    {
+#        :name => "puppetca",
+#        :mem => "512",
+#        :cpu => "1" ,
+#        :mac => "080027dddab8"
+#    },
+#   {
+#       :name => "puppetdb",
+#       :mem => "512",
+#       :cpu => "1" ,
+#       :mac => "08002766dff4"
+#   }
 #   {
 #        :name => "foreman",
 #        :mem => "512",
 #        :cpu => "1"
 #    }
-]
+#]
 
 Vagrant.configure("2") do |config|
   config.vm.synced_folder "~/share", "/opt/share"
@@ -192,24 +192,24 @@ EOF"
  SHELL
  end
 
-  puppetboxes.each do |opts|
-    config.vm.define opts[:name] do |config|
-      config.vm.box= "centos/7"
-      config.vm.hostname = opts[:name]
-      config.vm.provider "virtualbox" do |v|
-        v.memory = opts[:mem]
-        v.cpus = opts[:cpu]
-        v.name = opts[:name]
-        end
-      config.vm.provision "shell", inline: <<-SHELL
-	   sed -i.bak "s/SELINUX=enforcing/SELINUX=disabled/g" /etc/selinux/config
-           mkdir -p /root/.ssh
-           cat /opt/share/authorized_keys  >>  /root/.ssh/authorized_keys
-           chmod 0600 /root/.ssh/authorized_keys
-           init 6
- SHELL
-      config.vm.network :private_network, type: "dhcp", mac: opts[:mac],virtualbox__intnet: "home_network"
-      end
-  end
+# puppetboxes.each do |opts|
+#   config.vm.define opts[:name] do |config|
+#     config.vm.box= "centos/7"
+#     config.vm.hostname = opts[:name]
+#     config.vm.provider "virtualbox" do |v|
+#       v.memory = opts[:mem]
+#      v.cpus = opts[:cpu]
+#      v.name = opts[:name]
+#      end
+#    config.vm.provision "shell", inline: <<-SHELL
+#         sed -i.bak "s/SELINUX=enforcing/SELINUX=disabled/g" /etc/selinux/config
+#         mkdir -p /root/.ssh
+#         cat /opt/share/authorized_keys  >>  /root/.ssh/authorized_keys
+#         chmod 0600 /root/.ssh/authorized_keys
+#         init 6
+# SHELL
+#    config.vm.network :private_network, type: "dhcp", mac: opts[:mac],virtualbox__intnet: "home_network"
+#    end
+#  end
 end
 
