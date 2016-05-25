@@ -1,8 +1,0 @@
-interfaces:
-  auto:
-    ip: 172.16.1.51
-    mac: 08:00:27:dd:da:b8 
-    name: auto
-    onboot: 'yes'
-    protocol: dhcp
-    dns_name: puppetca.home
