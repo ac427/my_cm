@@ -1,6 +1,6 @@
 interfaces:
-  auto:
-    ip: 172.16.1.100
+  enp0s8:
+    ip: 172.16.1.200
     mac: 08:00:27:C2:82:F3
     name: auto
     onboot: 'yes'

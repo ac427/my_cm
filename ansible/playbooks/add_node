@@ -12,10 +12,10 @@
                --name={{ target }}
                --profile={{ profile }}
                --hostname={{ target }}
-               --interface=auto
-               --mac="{{ hostvars[target].interfaces.auto.mac }}"
-               --dns-name="{{ hostvars[target].interfaces.auto.dns_name }}"
-               --ip-address="{{ hostvars[target].interfaces.auto.ip }}"
+               --interface=enp0s8
+               --mac="{{ hostvars[target].interfaces.enp0s8.mac }}"
+               --dns-name="{{ hostvars[target].interfaces.enp0s8.dns_name }}"
+               --ip-address="{{ hostvars[target].interfaces.enp0s8.ip }}"
                creates=/var/lib/cobbler/config/systems.d/{{ target }}.json
     - command: cobbler system edit
                --name={{ target }}
