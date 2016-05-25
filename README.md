@@ -1,17 +1,9 @@
-### You can use the Vagrantfile in the repo to build the ansible admin node and run play book cobbler.yml to install and configure dhcp and dns
-Steps:
-
 ```
-vagrant up;vagrant ssh
-```
-### run below commands in terminal
-
-```
-[vagrant@admin ~]$ eval $(ssh-agent )
-[vagrant@admin ~]$ ssh-add .ssh/root 
-[vagrant@admin ~]$ git clone https://github.com/ac427/my_cm.git
-[vagrant@admin ~]$ cd my_cm/ansible/
-[vagrant@admin ansible]$ ansible-playbook -i hosts -u root cobbler.yml 
+[user@admin ~]$ eval $(ssh-agent )
+[user@admin ~]$ ssh-add .ssh/root 
+[user@admin ~]$ git clone https://github.com/ac427/my_cm.git
+[user@admin ~]$ cd my_cm/ansible/
+[user@admin ansible]$ ansible-playbook -i hosts -u root cobbler.yml 
 ```
 ### one you import iso to cobbler you can start adding nodes using playbooks/add_node
 
@@ -21,6 +13,7 @@ wget http://mirror.cs.vt.edu/pub/CentOS/7/isos/x86_64/CentOS-7-x86_64-Minimal-15
 sudo mkdir -p /mnt/centos7
 sudo mount -o loop /tmp/CentOS-7-x86_64-Minimal-1511.iso /mnt/centos7/
 sudo cobbler import --path=/mnt/centos7/ --name=centos7-x86_64 --available-as=http://admin.home/centos7
+sudo ansible-playbook -i hosts -u root  --extra-vars "target=admin" playbooks/add_node
 ``` 
 
 ### To add compute node, you can run below. Read playboks/add_node file for more info
