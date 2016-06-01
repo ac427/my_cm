@@ -1,8 +1,8 @@
 interfaces:
-  enp0s8:
+  eth1:
     ip: 172.16.1.11
-    mac: 08:00:27:64:64:d9 
-    name: enp0s8
+    mac: 08:00:27:d1:91:99 
+    name: eth1
     onboot: 'yes'
     protocol: static
     dns_name: admin.home

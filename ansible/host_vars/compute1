@@ -1,8 +1,8 @@
 interfaces:
-  enp0s8:
+  eth0:
     ip: 172.16.1.200
     mac: 08:00:27:C2:82:F3
-    name: auto
+    name: eth0
     onboot: 'yes'
     protocol: dhcp
     dns_name: compute1.home

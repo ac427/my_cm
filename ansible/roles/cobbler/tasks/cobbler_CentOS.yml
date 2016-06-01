@@ -25,7 +25,7 @@
   with_items:
     - xinetd
     - httpd
-    - tftp
+#    - tftpd
     - cobblerd
 
 ## cobbbler sync is failing as cobblerd is taking time to start service  ; adding pause for that reason
