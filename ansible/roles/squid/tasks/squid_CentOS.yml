@@ -1,0 +1,12 @@
+---
+- name: install CentOS packages for squid
+  yum: name={{ item }} state=present
+  with_items: squid_centos_packages
+  when: squid_centos_packages is defined
+
+- name: template /etc/squid/squid.conf
+  template: src=etc/squid/squid.conf.j2 dest=/etc/squid/squid.conf owner=root group=root mode=0444
+  notify: restart gmond
+
+- name: enable squid
+  service: name=squid state=started enabled=yes

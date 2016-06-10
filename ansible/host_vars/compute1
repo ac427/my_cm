@@ -1,6 +1,6 @@
 interfaces:
   eth0:
-    ip: 172.16.1.200
+    ip: 172.16.1.201
     mac: 08:00:27:C2:82:F3
     name: eth0
     onboot: 'yes'

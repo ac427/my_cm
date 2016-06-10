@@ -1,0 +1,8 @@
+interfaces:
+  eth0:
+    ip: 172.16.1.202
+    mac: 08:00:27:f6:82:87
+    name: eth0
+    onboot: 'yes'
+    protocol: dhcp
+    dns_name: compute2.home
