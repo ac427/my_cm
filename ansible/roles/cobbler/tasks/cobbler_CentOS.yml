@@ -7,6 +7,9 @@
 - name: template /etc/cobbler/settings
   template: src=etc/cobbler/settings_{{ ansible_distribution }}.conf.j2 dest=/etc/cobbler/settings owner=root group=root mode=0444
 
+- name: template /etc/cobbler/pxe/pxelocal.template
+  template: src=etc/cobbler/settings_{{ ansible_distribution }}.conf.j2 dest=/etc/cobbler/pxelocal.template owner=root group=root mode=0444
+
 - name: template /etc/cobbler/dhcp.template
   template: src=etc/cobbler/dhcp.template_{{ ansible_distribution }}.conf.j2 dest=/etc/cobbler/dhcp.template owner=root group=root mode=0444
 
