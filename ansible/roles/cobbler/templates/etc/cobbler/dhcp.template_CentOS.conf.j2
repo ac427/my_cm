@@ -25,6 +25,7 @@ subnet 172.16.0.0 netmask 255.255.0.0 {
      range dynamic-bootp        172.16.1.100 172.16.1.254;
      default-lease-time         21600;
      max-lease-time             43200;
+     deny 			unknown-clients;
      next-server                $next_server;
      class "pxeclients" {
           match if substring (option vendor-class-identifier, 0, 9) = "PXEClient";

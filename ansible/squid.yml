@@ -1,0 +1,6 @@
+---
+- name: squid role
+  hosts:
+    - localhost
+  roles:
+    - squid

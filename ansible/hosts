@@ -2,6 +2,9 @@
 compute
 admin
 
+[localhost]
+localhost
+
 [dev]
 DevVM
 
