@@ -25,12 +25,14 @@ def proc_watch():
 					if float(cpu_pid[8]) > 90:
 						s=smtplib.SMTP('localhost')
 #						s.set_debuglevel(1)
-	       					body=time.strftime("%d/%m/%Y-%H:%M:%S")+"\n"
+	       					body=time.strftime("%d/%m/%Y-%H:%M:%S")+"\n" +"   PID USER      PR  NI  VIRT  RES  SHR S %CPU %MEM    TIME+  COMMAND \n "
 	       					body+='\t'.join(cpu_pid) 
 						msg = MIMEText(body)
 						sender = 'engaging-admin@techsquare.com'
 						recipients = ['ac@techsquare.com']
-						msg['Subject'] = "rogue pid" +cpu_pid[0]
+						hostname_cmd = subprocess.Popen(['hostname','-s'], stdout=subprocess.PIPE)
+						hostname=hostname_cmd.communicate()[0]
+						msg['Subject'] = "rogue pid" +cpu_pid[0] + "on host " + hostname
 						msg['From'] = sender
 						msg['To'] = ", ".join(recipients)
 						s.sendmail(sender, recipients, msg.as_string())
