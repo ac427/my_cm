@@ -23,7 +23,7 @@ def proc_watch():
 				cpu_pid = rogue_info.communicate()[0].split()
 				try:
 					if float(cpu_pid[8]) > 90:
-						print "found pid > 10"
+						print "found pid > 90"
 						s=smtplib.SMTP('localhost')
 						s.set_debuglevel(1)
 	       					body=time.strftime("%d/%m/%Y-%H:%M:%S")
