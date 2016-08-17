@@ -8,7 +8,10 @@ from email.mime.text import MIMEText
 WHITE_LIST= ['sshd','rsync','sftp-server','ssh','root']
 WHITE_LIST_STR='|'.join(WHITE_LIST)
 #print WHITE_LIST_STR
-
+HEADER=['PID' ,  'USER' , 'PR' , 'NI' , 'VIRT' , 'RES' , 'SHR', 'S' ,'%CPU' ,'%MEM',    'TIME+ ', 'COMMAND']
+NEWLINE="\n"
+SPACE=" "
+COLON=": "
 
 def proc_watch():
 	while True:
@@ -25,14 +28,15 @@ def proc_watch():
 					if float(cpu_pid[8]) > 90:
 						s=smtplib.SMTP('localhost')
 #						s.set_debuglevel(1)
-	       					body=time.strftime("%d/%m/%Y-%H:%M:%S")+"\n" +"   PID USER      PR  NI  VIRT  RES  SHR S %CPU %MEM    TIME+  COMMAND \n "
-	       					body+='\t'.join(cpu_pid) 
+						hostname_cmd = subprocess.Popen(['hostname','-s'], stdout=subprocess.PIPE)
+						hostname=hostname_cmd.communicate()[0]
+	       					body=time.strftime("%d/%m/%Y-%H:%M:%S")+NEWLINE +hostname+NEWLINE 
+						for top,values in zip(HEADER,cpu_pid):
+							body=body+ top +COLON + values+NEWLINE
 						msg = MIMEText(body)
 						sender = 'engaging-admin@techsquare.com'
 						recipients = ['ac@techsquare.com']
-						hostname_cmd = subprocess.Popen(['hostname','-s'], stdout=subprocess.PIPE)
-						hostname=hostname_cmd.communicate()[0]
-						msg['Subject'] = "rogue pid" +cpu_pid[0] + "on host " + hostname
+						msg['Subject'] = "rogue pid " +cpu_pid[0] + " on " + hostname.rstrip() 
 						msg['From'] = sender
 						msg['To'] = ", ".join(recipients)
 						s.sendmail(sender, recipients, msg.as_string())
