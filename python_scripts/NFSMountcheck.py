@@ -33,7 +33,8 @@ def fscheck():
 	space=" "
         mountpoint_cmd = '/bin/mountpoint'
         mountpoint_args = '-q'
-        filesystems = { 'var': '/var', 'log': '/log', 'apps':'/share/apps'}
+#        filesystems = { 'var': '/var', 'log': '/log', 'apps':'/share/apps'}
+        filesystems = { 'nobackup1b': '/nobackup1b', 'nobackup1':'/nobackup1'}
         result ={}
         for fs in filesystems:
                 cmd=[mountpoint_cmd,mountpoint_args,filesystems[fs]]
@@ -61,10 +62,10 @@ def fscheck():
 	print returnvalue
 
 def main():
-	
-	while True:
-		fscheck()
-		time.sleep(60)
+        fscheck()	
+#	while True:
+#		fscheck()
+#		time.sleep(60)
 
 if __name__ == '__main__':
         main()
