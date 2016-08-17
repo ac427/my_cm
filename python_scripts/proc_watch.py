@@ -18,7 +18,6 @@ def proc_watch():
 		top_cmd="top -b -n 1 | sed -n '8,17p'| egrep -v \" "+ WHITE_LIST_STR + "\" |  awk '{print $1}' "
 		top_pids=subprocess.Popen(top_cmd,stdout=subprocess.PIPE,shell=True).communicate()[0].strip().split()
 		time.sleep(900)
-		count=0
 		for pid in top_pids:
 			pid_info=["top -b -n 1 -p "+pid+"| sed -n '8,17p'"]
 	         	rogue_info=subprocess.Popen(pid_info,stderr=subprocess.PIPE,stdout=subprocess.PIPE,shell=True)
