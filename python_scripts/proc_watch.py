@@ -5,7 +5,7 @@ import smtplib
 from email.mime.text import MIMEText
 
 
-WHITE_LIST= ['sshd','rsync','sftp-server','ssh','root']
+WHITE_LIST= ['sshd','sftp-server','ssh','root']
 WHITE_LIST_STR='|'.join(WHITE_LIST)
 #print WHITE_LIST_STR
 HEADER=['PID' ,  'USER' , 'PR' , 'NI' , 'VIRT' , 'RES' , 'SHR', 'S' ,'%CPU' ,'%MEM',    'TIME+ ', 'COMMAND']
@@ -29,7 +29,7 @@ def proc_watch():
 				try:
 					if float(cpu_pid[8]) > 90:
 						s=smtplib.SMTP('localhost')
-						s.set_debuglevel(1)
+#						s.set_debuglevel(1)
 						hostname_cmd = subprocess.Popen(['hostname','-s'], stdout=subprocess.PIPE)
 						hostname=hostname_cmd.communicate()[0]
 	       					body=time.strftime("%d/%m/%Y-%H:%M:%S")+NEWLINE +hostname+NEWLINE 
