@@ -1,23 +1,22 @@
 #!/bin/bash
 
 #GLOBAL VARS
-CPU=1
+CPU=99
 # MEMORY is % of system memory 
-MEM=5
+MEM=10
 PS_FORMAT="uid,%cpu,%mem,bsdtime,user,pid,comm"
 WHITELIST="sshd|sftp-server"
-#create tmp file
-tmp=$(date +%s) 
-touch /tmp/$tmp
 
 # real work; 
+while [ true ]
+do
+tmp=$(date +%s) 
+touch /tmp/$tmp
 ps axo $PS_FORMAT |
 awk '$1 > 1000 {print}' |
 awk --assign C=$CPU --assign M=$MEM '$2 > C || $3 > M {print}' |
 egrep -v "($WHITELIST)$" > /tmp/$tmp
-
-while [ true ]
-do
+checker=0
 
 	for user in $(awk '{print $5}' /tmp/$tmp  | sort -u)
 		do
@@ -25,10 +24,10 @@ do
 			do
 			if ps -p $pid > /dev/null
 				then
-				x+=1
+				checker+=1
 				fi
 			done
-	if [ $x -ge 1 ]
+	if [ $checker -ge 1 ]
 		then
 		
 		# find user 
@@ -39,6 +38,7 @@ do
 		
 		# make call about the process; either send email or kill and send email 
 		echo "send email to " + $user_email +" to kill his processes "
+		ps o  $PS_FORMAT  -u $user | awk '$1 > 1000 {print}' | awk --assign C=$CPU --assign M=$MEM '$2 > C || $3 > M {print}' | egrep -v "($WHITELIST)$" 
 		
 		else 
  		
