@@ -1,7 +1,7 @@
 #!/bin/bash
 
 #GLOBAL VARS
-CPU=70
+CPU=99
 # MEMORY is % of system memory 
 MEM=10
 PS_FORMAT="uid,%cpu,%mem,bsdtime,user,pid,comm"
