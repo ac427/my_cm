@@ -6,10 +6,12 @@ CPU=99
 MEM=10
 PS_FORMAT="uid,%cpu,%mem,bsdtime,user,pid,comm"
 WHITELIST="sshd|sftp-server"
-
+HOSTNAME=$(hostname -s)
 # real work; 
 while [ true ]
 do
+#sleep x minutes before checks
+sleep 15m
 tmp=$(date +%s) 
 touch /tmp/$tmp
 ps axo $PS_FORMAT |
@@ -35,10 +37,9 @@ checker=0
 		# above is not working for all users; example dtalmy
 		
 		user_email=$(ldapsearch -LLL -x -H ldap://master.eth.cluster -b dc=cm,dc=cluster  "(objectclass=*)" 'mail' | grep -A 1 uid=$user, | grep mail | awk '{print $2}')
-		
 		# make call about the process; either send email or kill and send email 
-		echo "send email to " + $user_email +" to kill his processes "
-		ps o  $PS_FORMAT  -u $user | awk '$1 > 1000 {print}' | awk --assign C=$CPU --assign M=$MEM '$2 > C || $3 > M {print}' | egrep -v "($WHITELIST)$" 
+#		echo "send email to " + $user_email +" to kill his processes "
+		echo -e " uid,%cpu,%mem,bsdtime,user,pid,comm \n $(ps o  $PS_FORMAT  -u $user | awk '$1 > 1000 {print}' | awk --assign C=$CPU --assign M=$MEM '$2 > C || $3 > M {print}' | egrep -v "($WHITELIST)$" ) "  | mail -s "resource intensive process on $HOSTNAME" ac@techsquare.com
 		
 		else 
  		
@@ -48,6 +49,4 @@ checker=0
 		done
 #clean up the file 
 rm /tmp/$tmp
-# sleep for x min
-sleep 15m
 done
