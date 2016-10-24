@@ -1,23 +1,24 @@
 #!/bin/bash
 
 #GLOBAL VARS
-CPU=99
+CPU=90
 # MEMORY is % of system memory 
-MEM=10
+MEM=5
 PS_FORMAT="uid,%cpu,%mem,bsdtime,user,pid,comm"
 WHITELIST="sshd|sftp-server"
 HOSTNAME=$(hostname -s)
 # real work; 
 while [ true ]
 do
-#sleep x minutes before checks
-sleep 15m
 tmp=$(date +%s) 
 touch /tmp/$tmp
 ps axo $PS_FORMAT |
 awk '$1 > 1000 {print}' |
 awk --assign C=$CPU --assign M=$MEM '$2 > C || $3 > M {print}' |
 egrep -v "($WHITELIST)$" > /tmp/$tmp
+
+#sleep x minutes before checks
+sleep 15
 checker=0
 
 	for user in $(awk '{print $5}' /tmp/$tmp  | sort -u)
@@ -38,7 +39,7 @@ checker=0
 		
 		user_email=$(ldapsearch -LLL -x -H ldap://master.eth.cluster -b dc=cm,dc=cluster  "(objectclass=*)" 'mail' | grep -A 1 uid=$user, | grep mail | awk '{print $2}')
 		# make call about the process; either send email or kill and send email 
-#		echo "send email to " + $user_email +" to kill his processes "
+		echo "send email to " + $user_email +" to kill his processes "
 		echo -e " uid,%cpu,%mem,bsdtime,user,pid,comm \n $(ps o  $PS_FORMAT  -u $user | awk '$1 > 1000 {print}' | awk --assign C=$CPU --assign M=$MEM '$2 > C || $3 > M {print}' | egrep -v "($WHITELIST)$" ) "  | mail -s "resource intensive process on $HOSTNAME" ac@techsquare.com
 		
 		else 
