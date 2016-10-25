@@ -18,7 +18,7 @@ awk --assign C=$CPU --assign M=$MEM '$2 > C || $3 > M {print}' |
 egrep -v "($WHITELIST)$" > /tmp/$tmp
 
 #sleep x minutes before checks
-sleep 15
+sleep 15m
 checker=0
 
 	for user in $(awk '{print $5}' /tmp/$tmp  | sort -u)
