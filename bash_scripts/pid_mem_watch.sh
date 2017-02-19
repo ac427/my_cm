@@ -37,7 +37,8 @@ checker=0
 		# user_email=$(ldapsearch -LLL -x -H ldap://master.eth.cluster -b dc=cm,dc=cluster cn=$user | grep mail | awk '{print $2}') 
 		# above is not working for all users; example dtalmy
 		
-		user_email=$(ldapsearch -LLL -x -H ldap://master.eth.cluster -b dc=cm,dc=cluster  "(objectclass=*)" 'mail' | grep -A 1 uid=$user, | grep mail | awk '{print $2}')
+#		user_email=$(ldapsearch -LLL -x -H ldap://eofe-ldap -b dc=cm,dc=cluster  "(objectclass=*)" 'mail' | grep -A 1 uid=$user, | grep mail | awk '{print $2}')
+		user_email=$(ldapsearch -LLL -x -H ldap://eofe-ldap -b dc=cm,dc=cluster  cn=$user  -b dc=cm,dc=cluster | grep mail | awk '{print $2}')
 		# make call about the process; either send email or kill and send email 
 		echo "send email to " + $user_email +" to kill his processes "
 		echo -e " uid,%cpu,%mem,bsdtime,user,pid,comm \n $(ps o  $PS_FORMAT  -u $user | awk '$1 > 1000 {print}' | awk --assign C=$CPU --assign M=$MEM '$2 > C || $3 > M {print}' | egrep -v "($WHITELIST)$" ) "  | mail -s "resource intensive process on $HOSTNAME" ac@techsquare.com
