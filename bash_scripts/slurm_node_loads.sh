@@ -1,4 +1,6 @@
 #!/bin/bash
+# program to print load higher than total cpu 
+
 FILE=$( mktemp --tmpdir=/tmp )
 SPACE=','
 #SPACE='\t '
