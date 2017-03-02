@@ -1,6 +1,6 @@
 #!/bin/bash 
 
-# program works on both ubuntu and centos; ubuntu has cpus seperted with - and centos , 
+# program works on both ubuntu and centos; ubuntu has cpus seperted with - and centos ,just put this script in /etc/rc.local
 
 CPU_OFFLINE=$( cat /sys/devices/system/cpu/cpu*/topology/thread_siblings_list | awk -F- '{print $2}' | sort -u) 
 if [ -z "$CPU_OFFLINE" ] ; then
