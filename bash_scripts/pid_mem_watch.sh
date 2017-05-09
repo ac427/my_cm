@@ -1,5 +1,9 @@
 #!/bin/bash
 
+#run in screen session
+if [ -z "$STY" ]; then exec screen -dm -S proc_watch /bin/bash "$0"; fi
+
+
 #GLOBAL VARS
 CPU=90
 # MEMORY is % of system memory 
