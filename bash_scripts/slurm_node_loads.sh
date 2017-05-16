@@ -6,12 +6,7 @@ TEMPLOGFILE=$( mktemp --tmpdir=/tmp )
 SPACE=','
 #SPACE='\t '
 
-scontrol show node | egrep "NodeName|CPULoad" |
-#TO PRINT ALL CPU INFO 
-#awk '{ if ($1 ~ /NodeName/) printf "\n %s,",$1; else if ($1 ~ /CPU/) for (i=1;i<=NF;i++)  printf "%s,",$i }' | tee $TEMPFILE
-
-#IF YOU WANT JUST TOTAL CPU AND LOAD 
-awk '{ if ($1 ~ /NodeName/) printf "\n %s,",$1; else if ($1 ~ /CPU/)  printf "%s,%s",$(NF-1),$NF}  END {printf "\n" }' | tee -a $TEMPFILE  > /dev/null
+scontrol show -o node | egrep "NodeName|CPULoad"  | awk 'BEGIN {OFS=","} {print $1,$6,$7}' | tee $TEMPFILE > /dev/null
 
 for lines in $(cat $TEMPFILE | grep -v "N/A");
 do
