@@ -34,7 +34,7 @@ def fscheck():
         mountpoint_cmd = '/bin/mountpoint'
         mountpoint_args = '-q'
 #        filesystems = { 'var': '/var', 'log': '/log', 'apps':'/share/apps'}
-        filesystems = { 'nobackup1b': '/nobackup1b', 'nobackup1':'/nobackup1'}
+        filesystems = { '/nobackup1b': '/nobackup1b', '/nobackup1':'/nobackup1','/pool001':'/pool001'}
         result ={}
         for fs in filesystems:
                 cmd=[mountpoint_cmd,mountpoint_args,filesystems[fs]]
@@ -62,6 +62,7 @@ def fscheck():
 	print returnvalue
 
 def main():
+        print "TOTAL, MOUNTPOINT, ON/OFF,MOUNTPOINT, ON/OFF,........."
         fscheck()	
 #	while True:
 #		fscheck()
