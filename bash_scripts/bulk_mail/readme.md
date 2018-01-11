@@ -8,7 +8,7 @@ first,last,dummyemail@dummy.com
 #####configure .muttrc with your email ( i have example for gmail in this repo)
 
 
-##### greeting.txt is your template 
+##### greeting.txt is your template . DON'T edit FIRSTNAME. You can replace everything. FIRSTNAME is replaced with the first value in emails.csv while sending out email. 
 
 here is the code to send out email 
 ```
