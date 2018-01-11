@@ -1,7 +1,7 @@
-create emails.csv file and enter emails in below format. Don't forget , 
+create emails.csv file and enter emails in below format. Don't forget ","  
 you can use any text editor) and save the file as emails.csv 
 
-Example from emails.csv
+Example from emails.csv ( csv stands for comma separated values) 
 
 first,last,dummyemail@dummy.com
 
