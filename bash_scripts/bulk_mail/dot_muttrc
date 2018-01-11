@@ -1,0 +1,52 @@
+color normal	white black
+color attachment brightyellow black
+color hdrdefault cyan black
+color indicator black cyan
+color markers	brightred black
+color quoted	green black
+color signature cyan black
+color status	brightgreen blue
+color tilde	blue black
+color tree	red black
+
+color index	red black ~D
+color index	magenta black ~T
+
+set from = "Ananta Chakravartula <ananta.c@gmail.com>"
+set date_format="!%b %d %H:%M"
+set index_format="%4C [%?X?A& ?]  %S %D %F %s "
+set fast_reply= yes
+set include=yes
+set timeout=10
+set sort_aux=last-date-received       
+set sort=threads
+set sort_re
+set use_from=yes
+set use_envelope_from = yes
+set realname = "Ananta Chakravartula"
+set imap_user = 'ananta.c@gmail.com'
+set imap_pass = 'PASSWORD'
+set folder = imaps://imap.gmail.com/
+set spoolfile = +INBOX
+set record = "+[Gmail]/Sent Mail"
+set postponed = "+[Gmail]/Drafts"
+set smtp_url = 'smtps://ananta.c@smtp.gmail.com'
+set smtp_pass = 'PASSWORD'
+set smtp_authenticators="plain"
+#set smtp_authenticators = 'gssapi:login'
+set record=""
+set ssl_starttls=yes
+set ssl_force_tls=yes
+set imap_keepalive = 900
+alternates "ananta.c@gmail.com|ananta.c@googlemail.com"
+# Where to put the stuff
+set header_cache = "~/.mutt/cache/headers"
+set message_cachedir = "~/.mutt/cache/bodies"
+set certificate_file = "~/.mutt/certificates"
+#
+# # Etc
+set mail_check = 30
+set move = no
+set imap_keepalive = 900
+set editor="vim -c 'set spell spelllang=en'" 
+#set editor = "vim"
