@@ -16,4 +16,7 @@ while read -r i;do email=$(echo $i | awk -F, '{print $NF}'); name=$(echo $i | aw
 
 for i in $(cat emails.csv | awk -F, '{print $3}');do echo $i; mutt -s "Ananta Chakravartula" $i < $i.txt; done
 
+
 ```
+# to send html
+mutt -e "set content_type=text/html" toaddress@domain.com  -s "subject"  -a krystle.jpg <  greetings.html
